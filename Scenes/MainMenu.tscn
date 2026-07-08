@@ -1,0 +1,243 @@
+[gd_scene format=3 uid="uid://cuu6wylmj8sa6"]
+
+[ext_resource type="Texture2D" uid="uid://djnntdenamccu" path="res://Assets/Textures/titlecard-2.png" id="1_8um5k"]
+[ext_resource type="Theme" uid="uid://dpi4dbw01y1sl" path="res://Assets/Themes/button.tres" id="2_xim88"]
+[ext_resource type="Script" uid="uid://dwppwprp32abd" path="res://Assets/Scripts/StartButton.gd" id="3_koqhg"]
+[ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="5_loo7a"]
+[ext_resource type="AudioStream" uid="uid://cb2knvgl3umoa" path="res://Assets/Music/mainmenu.mp3" id="6_if7li"]
+[ext_resource type="Script" uid="uid://yeejn38mkqwh" path="res://Assets/Scripts/SettingsButton.gd" id="6_koqhg"]
+[ext_resource type="Script" uid="uid://bc1dgg1mv71dd" path="res://Assets/Scripts/QuitButton.gd" id="6_xim88"]
+[ext_resource type="Script" uid="uid://bnx82atiuyf61" path="res://Scenes/settings_popup.gd" id="8_rrcx7"]
+[ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/VideoButton.gd" id="9_fh7cp"]
+[ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/ControlsButton.gd" id="10_8e205"]
+[ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/GraphicsButton.gd" id="11_7467j"]
+[ext_resource type="FontFile" uid="uid://b6knp75bpl56g" path="res://Assets/MorrisRomanBlack.ttf" id="12_rrcx7"]
+[ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Scenes/version_counter.gd" id="13_8e205"]
+[ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
+
+[sub_resource type="Theme" id="Theme_4rbuk"]
+FlowContainer/constants/v_separation = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiy7p"]
+bg_color = Color(0.4862745, 0.09411765, 0.23529412, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.8352941, 0.23529412, 0.41568628, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+corner_detail = 15
+shadow_size = 10
+
+[sub_resource type="Theme" id="Theme_v8156"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_eiy7p")
+
+[sub_resource type="Theme" id="Theme_82ftl"]
+Label/font_sizes/font_size = 21
+Label/fonts/font = ExtResource("12_rrcx7")
+
+[node name="Control" type="Control" unique_id=1514424175]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -249.43506
+offset_right = 249.43506
+offset_bottom = 241.0
+grow_horizontal = 2
+offset_transform_enabled = true
+texture = ExtResource("1_8um5k")
+expand_mode = 1
+
+[node name="Background" type="ColorRect" parent="." unique_id=1087895527]
+z_index = -1
+layout_mode = 0
+offset_right = 1187.0
+offset_bottom = 701.0
+color = Color(1, 0.50980395, 0.45490196, 1)
+
+[node name="MenuItems" type="FlowContainer" parent="." unique_id=882890977]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -58.0
+offset_top = -157.0
+offset_right = 58.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -15)
+theme = SubResource("Theme_4rbuk")
+alignment = 1
+last_wrap_alignment = 2
+
+[node name="Start" type="Button" parent="MenuItems" unique_id=1432760030]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Start"
+flat = true
+script = ExtResource("3_koqhg")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Start" unique_id=4277336]
+stream = ExtResource("5_loo7a")
+volume_db = -0.5
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Start" unique_id=1401851811]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Settings" type="Button" parent="MenuItems" unique_id=566689781]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Settings
+"
+flat = true
+script = ExtResource("6_koqhg")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Settings" unique_id=1801733095]
+stream = ExtResource("5_loo7a")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Settings" unique_id=2117285614]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Quit" type="Button" parent="MenuItems" unique_id=778726894]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Quit
+"
+flat = true
+script = ExtResource("6_xim88")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Quit" unique_id=2138583285]
+stream = ExtResource("5_loo7a")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Quit" unique_id=904757169]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -149.0
+offset_top = -83.0
+offset_right = 144.0
+offset_bottom = 167.00543
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 125)
+layout_direction = 1
+theme = SubResource("Theme_v8156")
+script = ExtResource("8_rrcx7")
+
+[node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 4.9
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -15)
+theme = SubResource("Theme_4rbuk")
+alignment = 1
+last_wrap_alignment = 1
+vertical = true
+
+[node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Video
+"
+flat = true
+script = ExtResource("9_fh7cp")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Video" unique_id=236576291]
+stream = ExtResource("5_loo7a")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Video" unique_id=542668932]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Controls
+"
+flat = true
+script = ExtResource("10_8e205")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Controls" unique_id=417501534]
+stream = ExtResource("5_loo7a")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Controls" unique_id=1264146125]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Graphics" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1536576483]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Graphics
+"
+flat = true
+script = ExtResource("11_7467j")
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Graphics" unique_id=367667173]
+stream = ExtResource("5_loo7a")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Graphics" unique_id=199987942]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup" unique_id=2012050158]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
+position = Vector2(-367, 521)
+stream = ExtResource("6_if7li")
+autoplay = true
+
+[node name="VersionCounter" type="Label" parent="." unique_id=1409264605]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.079956
+offset_top = 5.0
+offset_right = -13.079956
+offset_bottom = 28.0
+grow_horizontal = 0
+theme = SubResource("Theme_82ftl")
+text = "Version"
+horizontal_alignment = 1
+script = ExtResource("13_8e205")
+
+[node name="MainMenuBgn" type="AudioStreamPlayer" parent="." unique_id=1214470968]
+stream = ExtResource("13_fh7cp")
+volume_db = -25.416
+autoplay = true
+
+[connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
+[connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
+[connection signal="mouse_entered" from="MenuItems/Settings" to="." method="_on_settings_mouse_entered"]
+[connection signal="mouse_entered" from="MenuItems/Settings" to="MenuItems/Settings" method="_on_mouse_entered"]
+[connection signal="pressed" from="MenuItems/Settings" to="MenuItems/Settings" method="_on_pressed"]
+[connection signal="mouse_entered" from="MenuItems/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_entered" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_mouse_entered"]
+[connection signal="pressed" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_pressed"]

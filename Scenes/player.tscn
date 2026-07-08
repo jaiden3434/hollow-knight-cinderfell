@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://doo45yadqp2kf"]
+
+[ext_resource type="Script" uid="uid://ym7isvapup5b" path="res://Assets/Scripts/Movement.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://4vdjvkesevvw" path="res://icon.svg" id="2_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
+size = Vector2(151, 150)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1058156551]
+script = ExtResource("1_onrkg")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=860272574]
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684519052]
+position = Vector2(65.5, 65)
+shape = SubResource("RectangleShape2D_v8156")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=908327480]
+offset_left = -27.0
+offset_top = -28.0
+offset_right = 155.0
+offset_bottom = 154.0
+texture = ExtResource("2_i3pqv")
