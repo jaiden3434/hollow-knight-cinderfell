@@ -1,0 +1,595 @@
+[gd_scene format=3 uid="uid://ck7udchk5r5ch"]
+
+[ext_resource type="AudioStream" uid="uid://dsn4mhnp8eykw" path="res://Assets/SFX/WindBlowing.ogg" id="1_b226h"]
+[ext_resource type="Script" uid="uid://bww1ge7vut35u" path="res://Scenes/intro.gd" id="1_geirw"]
+[ext_resource type="FontFile" uid="uid://b6knp75bpl56g" path="res://Assets/MorrisRomanBlack.ttf" id="2_duh1u"]
+[ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="3_alxvg"]
+[ext_resource type="AudioStream" uid="uid://dxg4poe7pw5vl" path="res://Assets/Music/Zombie Hoodoo.mp3" id="5_hwjxs"]
+
+[sub_resource type="Shader" id="Shader_ayt76"]
+code = "shader_type canvas_item;
+
+// Credit for the original shader goes to Gonkee: https://github.com/Gonkee/Gonkees-Shaders/blob/master/fog.shader
+// Pixelate by Godot Shaders: https://godotshaders.com/shader/pixelate/
+
+uniform vec4 color : source_color;
+uniform int OCTAVES = 4;
+uniform bool enable_pixelation = true;
+uniform int pixelation_amount = 150;
+uniform sampler2D fog_mask;  // Texture mask for fog control
+uniform vec2 fog_direction = vec2(1.0, 1.0); // Use -1 and 1 values to change direction. Increase the speed in that direction with values higher/lower than 1
+uniform bool scroll_noise_tex = false; 
+uniform vec2 noise_scroll_direction = vec2(1.0, 0.0);  // Direction to scroll the noise texture
+
+float rand(vec2 coord){
+    return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
+}
+
+float noise(vec2 coord){
+    vec2 i = floor(coord);
+    vec2 f = fract(coord);
+
+    float a = rand(i);
+    float b = rand(i + vec2(1.0, 0.0));
+    float c = rand(i + vec2(0.0, 1.0));
+    float d = rand(i + vec2(1.0, 1.0));
+
+    vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+float fbm(vec2 coord){
+    float value = 0.0;
+    float scale = 0.5;
+
+    for(int i = 0; i < OCTAVES; i++){
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    vec2 grid_uv = UV;
+    if (enable_pixelation) {
+        grid_uv = round(UV * float(pixelation_amount)) / float(pixelation_amount);
+    }
+    
+    // Compute noise based on pixelated or non-pixelated coordinates
+    vec2 coord = grid_uv * 20.0;
+
+    // Scroll the noise texture if enabled
+    if (scroll_noise_tex) {
+        coord += noise_scroll_direction * TIME;
+    }
+
+    vec2 motion = vec2(fbm(coord + fog_direction * TIME));
+
+    float final = fbm(coord + motion);
+    
+    // Get the fog density from the texture mask
+    float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
+    
+    // Modulate the fog density by the mask value
+    final *= mask_value;
+
+    // Use the alpha value of the color to control the overall fog opacity
+    COLOR = vec4(color.rgb, final * color.a * 0.5);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g8t50"]
+shader = SubResource("Shader_ayt76")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/OCTAVES = 4
+shader_parameter/enable_pixelation = true
+shader_parameter/pixelation_amount = 150
+shader_parameter/fog_direction = Vector2(1, 1)
+shader_parameter/scroll_noise_tex = false
+shader_parameter/noise_scroll_direction = Vector2(1, 0)
+
+[sub_resource type="Shader" id="Shader_hwjxs"]
+code = "shader_type canvas_item;
+
+// Credit for the original shader goes to Gonkee: https://github.com/Gonkee/Gonkees-Shaders/blob/master/fog.shader
+// Pixelate by Godot Shaders: https://godotshaders.com/shader/pixelate/
+
+uniform vec4 color : source_color;
+uniform int OCTAVES = 4;
+uniform bool enable_pixelation = true;
+uniform int pixelation_amount = 150;
+uniform sampler2D fog_mask;  // Texture mask for fog control
+uniform vec2 fog_direction = vec2(1.0, 1.0); // Use -1 and 1 values to change direction. Increase the speed in that direction with values higher/lower than 1
+uniform bool scroll_noise_tex = false; 
+uniform vec2 noise_scroll_direction = vec2(1.0, 0.0);  // Direction to scroll the noise texture
+
+float rand(vec2 coord){
+    return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
+}
+
+float noise(vec2 coord){
+    vec2 i = floor(coord);
+    vec2 f = fract(coord);
+
+    float a = rand(i);
+    float b = rand(i + vec2(1.0, 0.0));
+    float c = rand(i + vec2(0.0, 1.0));
+    float d = rand(i + vec2(1.0, 1.0));
+
+    vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+float fbm(vec2 coord){
+    float value = 0.0;
+    float scale = 0.5;
+
+    for(int i = 0; i < OCTAVES; i++){
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    vec2 grid_uv = UV;
+    if (enable_pixelation) {
+        grid_uv = round(UV * float(pixelation_amount)) / float(pixelation_amount);
+    }
+    
+    // Compute noise based on pixelated or non-pixelated coordinates
+    vec2 coord = grid_uv * 20.0;
+
+    // Scroll the noise texture if enabled
+    if (scroll_noise_tex) {
+        coord += noise_scroll_direction * TIME;
+    }
+
+    vec2 motion = vec2(fbm(coord + fog_direction * TIME));
+
+    float final = fbm(coord + motion);
+    
+    // Get the fog density from the texture mask
+    float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
+    
+    // Modulate the fog density by the mask value
+    final *= mask_value;
+
+    // Use the alpha value of the color to control the overall fog opacity
+    COLOR = vec4(color.rgb, final * color.a * 0.5);
+}"
+
+[sub_resource type="Gradient" id="Gradient_g4887"]
+colors = PackedColorArray(0, 0, 0, 0.5372549, 1, 1, 1, 0.53333336)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0a7ni"]
+frequency = 0.0129
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rsiac"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_0a7ni")
+color_ramp = SubResource("Gradient_g4887")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6mry"]
+shader = SubResource("Shader_hwjxs")
+shader_parameter/color = Color(0.8352941, 0.8352941, 0.8352941, 0)
+shader_parameter/OCTAVES = 4
+shader_parameter/enable_pixelation = false
+shader_parameter/pixelation_amount = 0
+shader_parameter/fog_mask = SubResource("NoiseTexture2D_rsiac")
+shader_parameter/fog_direction = Vector2(1, 1)
+shader_parameter/scroll_noise_tex = true
+shader_parameter/noise_scroll_direction = Vector2(1, 0)
+
+[sub_resource type="Theme" id="Theme_v8156"]
+RichTextLabel/constants/line_separation = 10
+RichTextLabel/font_sizes/normal_font_size = 24
+RichTextLabel/fonts/normal_font = ExtResource("2_duh1u")
+
+[sub_resource type="Animation" id="Animation_geirw"]
+resource_name = "PoemCharacter"
+length = 25.666666
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Poem:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 291, 0, 0, 0.0016666667, -48.666668),
+"times": PackedFloat32Array(3.0666666, 15)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextLine:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.8, 2.1666667, 4.1666665, 4.5333333, 5.633333, 6, 8.5, 8.866667, 10.866667, 11.233334, 13.766666, 14.099999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true, true, true]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Poem:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
+"times": PackedFloat32Array(16.866667, 25.666666)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Poem:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
+"times": PackedFloat32Array(16.866667, 25.666666)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Poem:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
+"times": PackedFloat32Array(16.866667, 25.666666)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Poem:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -1.4666666, 0.16666667, 0, 0),
+"times": PackedFloat32Array(16.866667, 25.666666)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Fog:material:shader_parameter/color:r")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0, 0.8352941, -0.3671199, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2027194)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Fog:material:shader_parameter/color:g")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0, 0.8352941, -0.3671199, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2027194)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Fog:material:shader_parameter/color:b")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0, 0.8352941, -0.3671199, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2027194)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fog:material:shader_parameter/color:a")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.4862745, -0.3671199, -0.081045754, 0, 0),
+"times": PackedFloat32Array(0, 2.2027194)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Background:color:r")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.38078928, 0, 0, 0, 0, -3.5360572, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2847357, 23.501078)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Background:color:g")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.38078928, 0, 0, 0, 0, -3.5360572, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2847357, 23.501078)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Background:color:b")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.38078928, 0, 0, 0, 0, -3.5360572, 0, 0, 0),
+"times": PackedFloat32Array(0, 2.2847357, 23.501078)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Background:color:a")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.5647059, -0.38078928, 0.072549015, 0, 0, 1, -3.5360572, -0.07254902, 0, 0),
+"times": PackedFloat32Array(0, 2.2847357, 23.501078)
+}
+
+[sub_resource type="Animation" id="Animation_hwjxs"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Poem:visible_characters")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NextLine:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Poem:modulate:r")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Poem:modulate:g")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Poem:modulate:b")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Poem:modulate:a")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "bezier"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Fog:material:shader_parameter/color:r")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/7/type = "bezier"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Fog:material:shader_parameter/color:g")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/8/type = "bezier"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Fog:material:shader_parameter/color:b")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.8352941, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/9/type = "bezier"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Fog:material:shader_parameter/color:a")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/10/type = "bezier"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Background:color:r")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/11/type = "bezier"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Background:color:g")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/12/type = "bezier"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Background:color:b")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/13/type = "bezier"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Background:color:a")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rsiac"]
+_data = {
+&"PoemCharacter": SubResource("Animation_geirw"),
+&"RESET": SubResource("Animation_hwjxs")
+}
+
+[sub_resource type="Environment" id="Environment_v8156"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.65
+glow_strength = 2.0
+glow_bloom = 0.05
+
+[node name="Node2D" type="Node2D" unique_id=1200553301]
+material = SubResource("ShaderMaterial_g8t50")
+script = ExtResource("1_geirw")
+
+[node name="WindBlowing" type="AudioStreamPlayer" parent="." unique_id=443725026]
+stream = ExtResource("1_b226h")
+autoplay = true
+parameters/looping = true
+
+[node name="Fog" type="ColorRect" parent="." unique_id=1292466006]
+material = SubResource("ShaderMaterial_u6mry")
+offset_right = 1180.0
+offset_bottom = 654.0
+scale = Vector2(2.130283, 2.0673897)
+color = Color(0.17211533, 0.1721153, 0.1721153, 1)
+
+[node name="Background" type="ColorRect" parent="." unique_id=199432667]
+z_index = 1
+offset_right = 1180.0
+offset_bottom = 654.0
+scale = Vector2(2.130283, 2.0673897)
+color = Color(0, 0, 0, 1)
+
+[node name="Poem" type="RichTextLabel" parent="." unique_id=51165162]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 763.0
+offset_top = 598.0
+offset_right = 1415.0
+offset_bottom = 905.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.130283, 2.0673897)
+pivot_offset = Vector2(325, 150)
+offset_transform_enabled = true
+theme = SubResource("Theme_v8156")
+text = "A burning kingdom cries out from the ash,  
+	The ember heart bleeds a name.  
+		A shadow that cannot return,  
+			The great Cinderfell is no longer the same.  
+				So flee into darkness and fear;  
+					the broken voices herald an ending clear.
+
+												- Silem the Gilded One   
+
+"
+fit_content = true
+vertical_alignment = 3
+justification_flags = 171
+
+[node name="NextLine" type="AudioStreamPlayer" parent="." unique_id=934492682]
+stream = ExtResource("3_alxvg")
+volume_db = -17.687
+pitch_scale = 0.24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2059146623]
+libraries/ = SubResource("AnimationLibrary_rsiac")
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="." unique_id=823557263]
+stream = ExtResource("3_alxvg")
+pitch_scale = 0.5
+
+[node name="ZombieHoodoo" type="AudioStreamPlayer" parent="." unique_id=1877067789]
+stream = ExtResource("5_hwjxs")
+autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=100658027]
+environment = SubResource("Environment_v8156")

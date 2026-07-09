@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cuu6wylmj8sa6"]
 
 [ext_resource type="Texture2D" uid="uid://djnntdenamccu" path="res://Assets/Textures/titlecard-2.png" id="1_8um5k"]
+[ext_resource type="Script" uid="uid://hvbgb37s6eqi" path="res://Scenes/main_menu.gd" id="1_7467j"]
 [ext_resource type="Theme" uid="uid://dpi4dbw01y1sl" path="res://Assets/Themes/button.tres" id="2_xim88"]
 [ext_resource type="Script" uid="uid://dwppwprp32abd" path="res://Assets/Scripts/StartButton.gd" id="3_koqhg"]
 [ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="5_loo7a"]
@@ -15,8 +16,22 @@
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Scenes/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
 
+[sub_resource type="Environment" id="Environment_7467j"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.51
+glow_strength = 1.43
+glow_bloom = 0.17
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 80.0
+adjustment_enabled = true
+adjustment_brightness = 1.5
+
 [sub_resource type="Theme" id="Theme_4rbuk"]
-FlowContainer/constants/v_separation = 20
+FlowContainer/constants/v_separation = 117
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiy7p"]
 bg_color = Color(0.4862745, 0.09411765, 0.23529412, 1)
@@ -39,47 +54,132 @@ PanelContainer/styles/panel = SubResource("StyleBoxFlat_eiy7p")
 Label/font_sizes/font_size = 21
 Label/fonts/font = ExtResource("12_rrcx7")
 
+[sub_resource type="Shader" id="Shader_g4887"]
+code = "shader_type canvas_item;
+
+// Credit for the original shader goes to Gonkee: https://github.com/Gonkee/Gonkees-Shaders/blob/master/fog.shader
+// Pixelate by Godot Shaders: https://godotshaders.com/shader/pixelate/
+
+uniform vec4 color : source_color;
+uniform int OCTAVES = 4;
+uniform bool enable_pixelation = true;
+uniform int pixelation_amount = 150;
+uniform sampler2D fog_mask;  // Texture mask for fog control
+uniform vec2 fog_direction = vec2(1.0, 1.0); // Use -1 and 1 values to change direction. Increase the speed in that direction with values higher/lower than 1
+uniform bool scroll_noise_tex = false; 
+uniform vec2 noise_scroll_direction = vec2(1.0, 0.0);  // Direction to scroll the noise texture
+
+float rand(vec2 coord){
+    return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
+}
+
+float noise(vec2 coord){
+    vec2 i = floor(coord);
+    vec2 f = fract(coord);
+
+    float a = rand(i);
+    float b = rand(i + vec2(1.0, 0.0));
+    float c = rand(i + vec2(0.0, 1.0));
+    float d = rand(i + vec2(1.0, 1.0));
+
+    vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+float fbm(vec2 coord){
+    float value = 0.0;
+    float scale = 0.5;
+
+    for(int i = 0; i < OCTAVES; i++){
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    vec2 grid_uv = UV;
+    if (enable_pixelation) {
+        grid_uv = round(UV * float(pixelation_amount)) / float(pixelation_amount);
+    }
+    
+    // Compute noise based on pixelated or non-pixelated coordinates
+    vec2 coord = grid_uv * 20.0;
+
+    // Scroll the noise texture if enabled
+    if (scroll_noise_tex) {
+        coord += noise_scroll_direction * TIME;
+    }
+
+    vec2 motion = vec2(fbm(coord + fog_direction * TIME));
+
+    float final = fbm(coord + motion);
+    
+    // Get the fog density from the texture mask
+    float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
+    
+    // Modulate the fog density by the mask value
+    final *= mask_value;
+
+    // Use the alpha value of the color to control the overall fog opacity
+    COLOR = vec4(color.rgb, final * color.a * 0.5);
+}"
+
+[sub_resource type="Gradient" id="Gradient_7467j"]
+colors = PackedColorArray(0, 0, 0, 0.5372549, 1, 1, 1, 0.53333336)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2x1g0"]
+frequency = 0.0129
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7a8ye"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_2x1g0")
+color_ramp = SubResource("Gradient_7467j")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riqfo"]
+shader = SubResource("Shader_g4887")
+shader_parameter/color = Color(0.8352941, 0.8352941, 0.8352941, 0.4862745)
+shader_parameter/OCTAVES = 4
+shader_parameter/enable_pixelation = false
+shader_parameter/pixelation_amount = 0
+shader_parameter/fog_mask = SubResource("NoiseTexture2D_7a8ye")
+shader_parameter/fog_direction = Vector2(1, 1)
+shader_parameter/scroll_noise_tex = true
+shader_parameter/noise_scroll_direction = Vector2(1, 0)
+
 [node name="Control" type="Control" unique_id=1514424175]
 layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7467j")
 
-[node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -249.43506
-offset_right = 249.43506
-offset_bottom = 241.0
-grow_horizontal = 2
-offset_transform_enabled = true
-texture = ExtResource("1_8um5k")
-expand_mode = 1
-
-[node name="Background" type="ColorRect" parent="." unique_id=1087895527]
-z_index = -1
-layout_mode = 0
-offset_right = 1187.0
-offset_bottom = 701.0
-color = Color(1, 0.50980395, 0.45490196, 1)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=351848500]
+environment = SubResource("Environment_7467j")
 
 [node name="MenuItems" type="FlowContainer" parent="." unique_id=882890977]
+z_as_relative = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -58.0
-offset_top = -157.0
-offset_right = 58.0
+offset_left = -96.0
+offset_top = -468.0
+offset_right = 97.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -15)
+mouse_filter = 2
 theme = SubResource("Theme_4rbuk")
 alignment = 1
 last_wrap_alignment = 2
@@ -129,6 +229,21 @@ stream = ExtResource("5_loo7a")
 stream = ExtResource("5_loo7a")
 pitch_scale = 0.5
 
+[node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
+z_index = 288
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 28.0
+offset_right = 372.1101
+offset_bottom = 401.0
+grow_horizontal = 2
+offset_transform_enabled = true
+texture = ExtResource("1_8um5k")
+expand_mode = 1
+
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
 visible = false
 layout_mode = 1
@@ -137,27 +252,29 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -149.0
-offset_top = -83.0
-offset_right = 144.0
-offset_bottom = 167.00543
+offset_left = -260.0
+offset_top = -239.0
+offset_right = 255.0
+offset_bottom = 523.83276
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
 layout_direction = 1
+mouse_filter = 2
+mouse_behavior_recursive = 2
 theme = SubResource("Theme_v8156")
 script = ExtResource("8_rrcx7")
 
 [node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
 size_flags_stretch_ratio = 4.9
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -15)
 theme = SubResource("Theme_4rbuk")
 alignment = 1
 last_wrap_alignment = 1
-vertical = true
 
 [node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826]
 layout_mode = 2
@@ -218,10 +335,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -73.079956
-offset_top = 5.0
-offset_right = -13.079956
-offset_bottom = 28.0
+offset_left = -144.0
+offset_top = 59.0
+offset_right = -84.0
+offset_bottom = 82.0
 grow_horizontal = 0
 theme = SubResource("Theme_82ftl")
 text = "Version"
@@ -232,6 +349,22 @@ script = ExtResource("13_8e205")
 stream = ExtResource("13_fh7cp")
 volume_db = -25.416
 autoplay = true
+
+[node name="Fog" type="ColorRect" parent="." unique_id=1856413664]
+z_index = -5
+material = SubResource("ShaderMaterial_riqfo")
+layout_mode = 0
+offset_right = 2727.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.14044744, 0.14044747, 0.14044738, 1)
+
+[node name="Background" type="ColorRect" parent="." unique_id=222903332]
+layout_mode = 0
+offset_right = 2727.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.029506557, 0.029506557, 0.029506557, 0.68235296)
 
 [connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
