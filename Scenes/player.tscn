@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ym7isvapup5b" path="res://Assets/Scripts/Movement.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://4vdjvkesevvw" path="res://icon.svg" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://r3w8hthsa0s7" path="res://Assets/Scripts/state_machine/state_machine.gd" id="3_vgqql"]
+[ext_resource type="Script" uid="uid://6od8ykch3ya8" path="res://Assets/Scripts/state_machine/state.gd" id="4_fkybt"]
+[ext_resource type="Script" uid="uid://b41v0pjyknxa1" path="res://Assets/Scripts/state_machine/move.gd" id="4_x3wgy"]
+[ext_resource type="Script" uid="uid://bkpcxxmxp1lnw" path="res://Scenes/jump.gd" id="5_3smsa"]
+[ext_resource type="Script" uid="uid://d3ngfe0k5k7au" path="res://Assets/Scripts/state_machine/idle.gd" id="6_3smsa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
 size = Vector2(151, 150)
@@ -10,6 +15,7 @@ size = Vector2(151, 150)
 script = ExtResource("1_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=860272574]
+process_callback = 0
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684519052]
@@ -22,3 +28,29 @@ offset_top = -28.0
 offset_right = 155.0
 offset_bottom = 154.0
 texture = ExtResource("2_i3pqv")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1950604772 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_vgqql")
+initial_state = NodePath("Idle")
+metadata/_custom_type_script = "uid://r3w8hthsa0s7"
+
+[node name="Move" type="Node" parent="StateMachine" unique_id=1745373089 node_paths=PackedStringArray("player")]
+script = ExtResource("4_x3wgy")
+player = NodePath("../..")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264]
+script = ExtResource("5_3smsa")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=2146611556]
+script = ExtResource("4_fkybt")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("move", "jump", "fall", "idle")]
+script = ExtResource("6_3smsa")
+move = NodePath("../Move")
+jump = NodePath("../Jump")
+fall = NodePath("../Fall")
+idle = NodePath(".")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
