@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://doo45yadqp2kf"]
 
 [ext_resource type="Script" uid="uid://ym7isvapup5b" path="res://Assets/Scripts/Movement.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://bckep5yf335hg" path="res://Scenes/camera_2d.gd" id="2_3smsa"]
 [ext_resource type="Texture2D" uid="uid://4vdjvkesevvw" path="res://icon.svg" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://r3w8hthsa0s7" path="res://Assets/Scripts/state_machine/state_machine.gd" id="3_vgqql"]
-[ext_resource type="Script" uid="uid://6od8ykch3ya8" path="res://Assets/Scripts/state_machine/state.gd" id="4_fkybt"]
 [ext_resource type="Script" uid="uid://b41v0pjyknxa1" path="res://Assets/Scripts/state_machine/move.gd" id="4_x3wgy"]
 [ext_resource type="Script" uid="uid://bkpcxxmxp1lnw" path="res://Scenes/jump.gd" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://d3ngfe0k5k7au" path="res://Assets/Scripts/state_machine/idle.gd" id="6_3smsa"]
@@ -15,8 +15,20 @@ size = Vector2(151, 150)
 script = ExtResource("1_onrkg")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=860272574]
+offset = Vector2(0, -100)
 process_callback = 0
+limit_enabled = false
 position_smoothing_enabled = true
+position_smoothing_speed = 2.275
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.7
+drag_top_margin = 0.7
+drag_right_margin = 0.7
+drag_bottom_margin = 0.7
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("2_3smsa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1684519052]
 position = Vector2(65.5, 65)
@@ -34,23 +46,23 @@ script = ExtResource("3_vgqql")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://r3w8hthsa0s7"
 
-[node name="Move" type="Node" parent="StateMachine" unique_id=1745373089 node_paths=PackedStringArray("player")]
+[node name="Move" type="Node" parent="StateMachine" unique_id=1745373089 node_paths=PackedStringArray("player", "jump")]
 script = ExtResource("4_x3wgy")
 player = NodePath("../..")
+jump = NodePath("../Jump")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264 node_paths=PackedStringArray("player", "fall", "idle")]
 script = ExtResource("5_3smsa")
-metadata/_custom_type_script = "uid://6od8ykch3ya8"
-
-[node name="Fall" type="Node" parent="StateMachine" unique_id=2146611556]
-script = ExtResource("4_fkybt")
+player = NodePath("../..")
+fall = NodePath("")
+idle = NodePath("../Idle")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("move", "jump", "fall", "idle")]
 script = ExtResource("6_3smsa")
 move = NodePath("../Move")
 jump = NodePath("../Jump")
-fall = NodePath("../Fall")
+fall = NodePath("")
 idle = NodePath(".")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"

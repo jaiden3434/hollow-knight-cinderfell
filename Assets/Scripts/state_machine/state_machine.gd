@@ -8,12 +8,13 @@ func _ready() -> void:
 		child_state.switch_state.connect(change_state)
 	change_state(initial_state)
 func _process(delta: float) -> void:
+	print("StateMachine: " + str(active_state))	
 	if active_state:
 		active_state.update(delta)
 		
 func physics_process(delta: float) -> void:
-		if active_state:
-			active_state.physics_update(delta)
+	if active_state:
+		active_state.physics_update(delta)
 
 func change_state(new_state: State) -> void:
 		if new_state == active_state:

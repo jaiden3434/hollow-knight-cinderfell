@@ -8,10 +8,10 @@ extends State
 @export var idle: State
 
 func enter_state() -> void:
-	player.velocity.y = 300.0
-	
+	player.velocity.y = -800.0
+
 func update(_delta: float) -> void:
-	if player.velocity.y <= 0.0:
-		switch_state.emit(fall)
-	if Input.is_action_just_released("up"):
-		player.velocity.y /= 5.0
+	if player.is_on_floor():
+		switch_state.emit(idle)
+	if Input.is_action_pressed("x_axis"):
+		switch_state.emit(move)

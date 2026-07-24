@@ -13,5 +13,5 @@ func enter_state() -> void:
 func update(_delta: float) -> void:
 	if Input.is_action_pressed("x_axis"):
 		switch_state.emit(move)
-	if Input.is_action_just_pressed("y_axis"):
+	if Input.is_action_pressed("y_axis"):
 		switch_state.emit(jump)
