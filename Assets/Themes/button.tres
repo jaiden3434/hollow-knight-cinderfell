@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://dpi4dbw01y1sl"]
 
-[ext_resource type="FontFile" uid="uid://b6knp75bpl56g" path="res://Assets/MorrisRomanBlack.ttf" id="1_174f8"]
+[ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="1_174f8"]
 
 [resource]
 Button/colors/font_color = Color(1, 1, 1, 1)

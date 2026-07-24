@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://ho7l8xqg2yeg"
-path="res://.godot/imported/Kells SD.ttf-829d5a176b4e2a560606307bc6b20486.fontdata"
+uid="uid://fwos1nng7a26"
+path="res://.godot/imported/Cinzel-ExtraBold.ttf-adf32a367fdc74a5c195c360d0d0ff70.fontdata"
 
 [deps]
 
-source_file="res://Assets/Kells SD.ttf"
-dest_files=["res://.godot/imported/Kells SD.ttf-829d5a176b4e2a560606307bc6b20486.fontdata"]
+source_file="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-ExtraBold.ttf"
+dest_files=["res://.godot/imported/Cinzel-ExtraBold.ttf-adf32a367fdc74a5c195c360d0d0ff70.fontdata"]
 
 [params]
 

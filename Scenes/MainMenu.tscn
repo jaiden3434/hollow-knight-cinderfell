@@ -1,19 +1,18 @@
 [gd_scene format=3 uid="uid://cuu6wylmj8sa6"]
 
-[ext_resource type="Texture2D" uid="uid://djnntdenamccu" path="res://Assets/Textures/titlecard-2.png" id="1_8um5k"]
-[ext_resource type="Script" uid="uid://hvbgb37s6eqi" path="res://Scenes/main_menu.gd" id="1_7467j"]
+[ext_resource type="Script" uid="uid://hvbgb37s6eqi" path="res://Assets/Scripts/main_menu.gd" id="1_7467j"]
 [ext_resource type="Theme" uid="uid://dpi4dbw01y1sl" path="res://Assets/Themes/button.tres" id="2_xim88"]
-[ext_resource type="Script" uid="uid://dwppwprp32abd" path="res://Assets/Scripts/StartButton.gd" id="3_koqhg"]
+[ext_resource type="Script" uid="uid://dwppwprp32abd" path="res://Assets/Scripts/button logic/start_button.gd" id="3_koqhg"]
 [ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="5_loo7a"]
 [ext_resource type="AudioStream" uid="uid://cb2knvgl3umoa" path="res://Assets/Music/mainmenu.mp3" id="6_if7li"]
-[ext_resource type="Script" uid="uid://yeejn38mkqwh" path="res://Assets/Scripts/SettingsButton.gd" id="6_koqhg"]
-[ext_resource type="Script" uid="uid://bc1dgg1mv71dd" path="res://Assets/Scripts/QuitButton.gd" id="6_xim88"]
-[ext_resource type="Script" uid="uid://bnx82atiuyf61" path="res://Scenes/settings_popup.gd" id="8_rrcx7"]
-[ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/VideoButton.gd" id="9_fh7cp"]
-[ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/ControlsButton.gd" id="10_8e205"]
-[ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/GraphicsButton.gd" id="11_7467j"]
-[ext_resource type="FontFile" uid="uid://b6knp75bpl56g" path="res://Assets/MorrisRomanBlack.ttf" id="12_rrcx7"]
-[ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Scenes/version_counter.gd" id="13_8e205"]
+[ext_resource type="Script" uid="uid://yeejn38mkqwh" path="res://Assets/Scripts/button logic/settings_button.gd" id="6_koqhg"]
+[ext_resource type="Script" uid="uid://bc1dgg1mv71dd" path="res://Assets/Scripts/button logic/quit_button.gd" id="6_xim88"]
+[ext_resource type="Texture2D" uid="uid://b0ce2qaf5kthh" path="res://Assets/Textures/titlecard-7.png" id="7_7467j"]
+[ext_resource type="Script" uid="uid://bnx82atiuyf61" path="res://Assets/Scripts/settings_popup.gd" id="8_rrcx7"]
+[ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/button logic/video_button.gd" id="9_fh7cp"]
+[ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/button logic/controls_button.gd" id="10_8e205"]
+[ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/button logic/graphics_button.gd" id="11_7467j"]
+[ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
 
 [sub_resource type="Environment" id="Environment_7467j"]
@@ -49,10 +48,6 @@ shadow_size = 10
 
 [sub_resource type="Theme" id="Theme_v8156"]
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_eiy7p")
-
-[sub_resource type="Theme" id="Theme_82ftl"]
-Label/font_sizes/font_size = 21
-Label/fonts/font = ExtResource("12_rrcx7")
 
 [sub_resource type="Shader" id="Shader_g4887"]
 code = "shader_type canvas_item;
@@ -235,13 +230,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -400.0
-offset_top = 28.0
-offset_right = 372.1101
-offset_bottom = 401.0
+offset_left = -551.0
+offset_top = -24.0
+offset_right = 601.99023
+offset_bottom = 533.0
 grow_horizontal = 2
 offset_transform_enabled = true
-texture = ExtResource("1_8um5k")
+texture = ExtResource("7_7467j")
 expand_mode = 1
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
@@ -340,7 +335,7 @@ offset_top = 59.0
 offset_right = -84.0
 offset_bottom = 82.0
 grow_horizontal = 0
-theme = SubResource("Theme_82ftl")
+theme = ExtResource("2_xim88")
 text = "Version"
 horizontal_alignment = 1
 script = ExtResource("13_8e205")
@@ -361,8 +356,10 @@ color = Color(0.14044744, 0.14044747, 0.14044738, 1)
 
 [node name="Background" type="ColorRect" parent="." unique_id=222903332]
 layout_mode = 0
-offset_right = 2727.0
-offset_bottom = 1280.0
+offset_left = -117.0
+offset_top = -171.0
+offset_right = 2401.0
+offset_bottom = 1420.0
 mouse_filter = 2
 color = Color(0.029506557, 0.029506557, 0.029506557, 0.68235296)
 

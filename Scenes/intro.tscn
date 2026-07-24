@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ck7udchk5r5ch"]
 
 [ext_resource type="AudioStream" uid="uid://dsn4mhnp8eykw" path="res://Assets/SFX/WindBlowing.ogg" id="1_b226h"]
-[ext_resource type="Script" uid="uid://bww1ge7vut35u" path="res://Scenes/intro.gd" id="1_geirw"]
-[ext_resource type="FontFile" uid="uid://b6knp75bpl56g" path="res://Assets/MorrisRomanBlack.ttf" id="2_duh1u"]
+[ext_resource type="Script" uid="uid://bww1ge7vut35u" path="res://Assets/Scripts/intro.gd" id="1_geirw"]
+[ext_resource type="FontFile" path="res://Assets/MorrisRomanBlack.ttf" id="2_duh1u"]
 [ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="3_alxvg"]
 [ext_resource type="AudioStream" uid="uid://dxg4poe7pw5vl" path="res://Assets/Music/Zombie Hoodoo.mp3" id="5_hwjxs"]
 

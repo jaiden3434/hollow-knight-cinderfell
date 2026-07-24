@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b6knp75bpl56g"
-path="res://.godot/imported/MorrisRomanBlack.ttf-742ca899c49234528ded72ef032ecbe7.fontdata"
+uid="uid://ckqlkf42sdylg"
+path="res://.godot/imported/Cinzel-VariableFont_wght.ttf-3514fa164782606bfbdf5d94bbc08581.fontdata"
 
 [deps]
 
-source_file="res://Assets/MorrisRomanBlack.ttf"
-dest_files=["res://.godot/imported/MorrisRomanBlack.ttf-742ca899c49234528ded72ef032ecbe7.fontdata"]
+source_file="res://Assets/Fonts/Cardo,Cinzel/Cinzel/Cinzel-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/Cinzel-VariableFont_wght.ttf-3514fa164782606bfbdf5d94bbc08581.fontdata"]
 
 [params]
 
