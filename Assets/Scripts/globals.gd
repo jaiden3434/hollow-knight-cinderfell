@@ -1,6 +1,6 @@
 extends Node
 
-var firstLaunch : bool = true
+var firstLaunch : bool = false
 
 #------------------------------
 ## Player configs

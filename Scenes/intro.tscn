@@ -2,8 +2,8 @@
 
 [ext_resource type="AudioStream" uid="uid://dsn4mhnp8eykw" path="res://Assets/SFX/WindBlowing.ogg" id="1_b226h"]
 [ext_resource type="Script" uid="uid://bww1ge7vut35u" path="res://Assets/Scripts/intro.gd" id="1_geirw"]
-[ext_resource type="FontFile" path="res://Assets/MorrisRomanBlack.ttf" id="2_duh1u"]
 [ext_resource type="AudioStream" uid="uid://bid6lnk6k54dl" path="res://Assets/SFX/SelectHover.mp3" id="3_alxvg"]
+[ext_resource type="Theme" uid="uid://dpi4dbw01y1sl" path="res://Assets/Themes/button.tres" id="3_hwjxs"]
 [ext_resource type="AudioStream" uid="uid://dxg4poe7pw5vl" path="res://Assets/Music/Zombie Hoodoo.mp3" id="5_hwjxs"]
 
 [sub_resource type="Shader" id="Shader_ayt76"]
@@ -186,11 +186,6 @@ shader_parameter/fog_direction = Vector2(1, 1)
 shader_parameter/scroll_noise_tex = true
 shader_parameter/noise_scroll_direction = Vector2(1, 0)
 
-[sub_resource type="Theme" id="Theme_v8156"]
-RichTextLabel/constants/line_separation = 10
-RichTextLabel/font_sizes/normal_font_size = 24
-RichTextLabel/fonts/normal_font = ExtResource("2_duh1u")
-
 [sub_resource type="Animation" id="Animation_geirw"]
 resource_name = "PoemCharacter"
 length = 25.666666
@@ -205,26 +200,25 @@ tracks/0/keys = {
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 291, 0, 0, 0.0016666667, -48.666668),
 "times": PackedFloat32Array(3.0666666, 15)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NextLine:playing")
+tracks/1/path = NodePath("Poem:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.8, 2.1666667, 4.1666665, 4.5333333, 5.633333, 6, 8.5, 8.866667, 10.866667, 11.233334, 13.766666, 14.099999),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [true, true, true, true, true, true, true, true, true, true, true, true]
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -1.4666666, 0.16666667, 0, 0),
+"times": PackedFloat32Array(16.866667, 25.666666)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Poem:modulate:r")
+tracks/2/path = NodePath("Poem:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
 "times": PackedFloat32Array(16.866667, 25.666666)
 }
@@ -235,31 +229,32 @@ tracks/3/path = NodePath("Poem:modulate:g")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
 "times": PackedFloat32Array(16.866667, 25.666666)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Poem:modulate:b")
+tracks/4/path = NodePath("Poem:modulate:r")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 2),
+"handle_modes": PackedInt32Array(0, 0),
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -1.4666666, 0, 0, 0),
 "times": PackedFloat32Array(16.866667, 25.666666)
 }
-tracks/5/type = "bezier"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Poem:modulate:a")
+tracks/5/path = NodePath("NextLine:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -1.4666666, 0.16666667, 0, 0),
-"times": PackedFloat32Array(16.866667, 25.666666)
+"times": PackedFloat32Array(1.8, 2.1666667, 4.1666665, 4.5333333, 5.633333, 6, 8.5, 8.866667, 10.866667, 11.233334, 13.766666, 14.099999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, true, true, true, true, true, true, true, true, true]
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
@@ -363,22 +358,21 @@ tracks/0/keys = {
 "points": PackedFloat32Array(-1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/1/type = "value"
+tracks/1/type = "bezier"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("NextLine:playing")
+tracks/1/path = NodePath("Poem:modulate:a")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
 }
 tracks/2/type = "bezier"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Poem:modulate:r")
+tracks/2/path = NodePath("Poem:modulate:b")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -400,7 +394,7 @@ tracks/3/keys = {
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Poem:modulate:b")
+tracks/4/path = NodePath("Poem:modulate:r")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -408,16 +402,17 @@ tracks/4/keys = {
 "points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
-tracks/5/type = "bezier"
+tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Poem:modulate:a")
+tracks/5/path = NodePath("NextLine:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 tracks/6/type = "bezier"
 tracks/6/imported = false
@@ -560,7 +555,7 @@ grow_vertical = 2
 scale = Vector2(2.130283, 2.0673897)
 pivot_offset = Vector2(325, 150)
 offset_transform_enabled = true
-theme = SubResource("Theme_v8156")
+theme = ExtResource("3_hwjxs")
 text = "A burning kingdom cries out from the ash,  
 	The ember heart bleeds a name.  
 		A shadow that cannot return,  

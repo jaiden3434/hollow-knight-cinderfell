@@ -1,9 +1,11 @@
 [gd_resource type="Theme" format=3 uid="uid://dpi4dbw01y1sl"]
 
-[ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="1_174f8"]
+[ext_resource type="FontFile" uid="uid://dpmvke2rwlduk" path="res://Assets/Fonts/Cardo,Cinzel/Cardo/Cardo-Regular.ttf" id="1_174f8"]
 
 [resource]
+default_base_scale = 0.21
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.8666667, 0, 0, 1)
-Button/font_sizes/font_size = 60
+Button/font_sizes/font_size = 49
 Button/fonts/font = ExtResource("1_174f8")
+RichTextLabel/fonts/normal_font = ExtResource("1_174f8")
