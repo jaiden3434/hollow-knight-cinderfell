@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/button logic/graphics_button.gd" id="11_7467j"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
+[ext_resource type="Script" uid="uid://cin16u4ayadf2" path="res://Scenes/black_screen.gd" id="15_7467j"]
 
 [sub_resource type="Environment" id="Environment_7467j"]
 background_mode = 3
@@ -361,7 +362,18 @@ offset_top = -171.0
 offset_right = 2401.0
 offset_bottom = 1420.0
 mouse_filter = 2
-color = Color(0.029506557, 0.029506557, 0.029506557, 0.68235296)
+color = Color(0, 0, 0, 0.5921569)
+
+[node name="BlackScreen" type="ColorRect" parent="." unique_id=2097454917]
+z_index = 309
+layout_mode = 0
+offset_left = -121.0
+offset_top = -175.0
+offset_right = 2413.0
+offset_bottom = 1417.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("15_7467j")
 
 [connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
