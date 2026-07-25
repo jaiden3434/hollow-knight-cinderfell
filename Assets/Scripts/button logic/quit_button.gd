@@ -9,9 +9,11 @@ func _on_mouse_entered() -> void:
 
 
 func _on_pressed() -> void:
+	# fades out screen, i really would like it to last longer but this is as best as i can get it
+	$"../../BlackScreen".color.a = lerp($"../../BlackScreen".color.a, 255.0, 0.01)
 	# Plays sound
 	$SelectClick.play()
 	
-	# Waits for sound to finish, then closes game
+	# waits for sound to finish playing
 	await $SelectClick.finished
 	get_tree().quit()
