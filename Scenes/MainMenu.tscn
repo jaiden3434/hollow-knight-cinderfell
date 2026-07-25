@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/button logic/graphics_button.gd" id="11_7467j"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
-[ext_resource type="Script" uid="uid://cin16u4ayadf2" path="res://Scenes/black_screen.gd" id="15_7467j"]
+[ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Scenes/black_screen.gd" id="15_7467j"]
 
 [sub_resource type="Environment" id="Environment_7467j"]
 background_mode = 3
@@ -147,7 +147,7 @@ shader_parameter/fog_direction = Vector2(1, 1)
 shader_parameter/scroll_noise_tex = true
 shader_parameter/noise_scroll_direction = Vector2(1, 0)
 
-[node name="Control" type="Control" unique_id=1514424175]
+[node name="Main Menu" type="Control" unique_id=1514424175]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -187,14 +187,6 @@ text = "Start"
 flat = true
 script = ExtResource("3_koqhg")
 
-[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Start" unique_id=4277336]
-stream = ExtResource("5_loo7a")
-volume_db = -0.5
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Start" unique_id=1401851811]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
-
 [node name="Settings" type="Button" parent="MenuItems" unique_id=566689781]
 layout_mode = 2
 theme = ExtResource("2_xim88")
@@ -202,13 +194,6 @@ text = "Settings
 "
 flat = true
 script = ExtResource("6_koqhg")
-
-[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Settings" unique_id=1801733095]
-stream = ExtResource("5_loo7a")
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Settings" unique_id=2117285614]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
 
 [node name="Quit" type="Button" parent="MenuItems" unique_id=778726894]
 layout_mode = 2
@@ -218,27 +203,31 @@ text = "Quit
 flat = true
 script = ExtResource("6_xim88")
 
-[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems/Quit" unique_id=2138583285]
+[node name="SelectHover" type="AudioStreamPlayer" parent="MenuItems" unique_id=2099299081]
 stream = ExtResource("5_loo7a")
+volume_db = -0.5
 
-[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems/Quit" unique_id=904757169]
+[node name="SelectClick" type="AudioStreamPlayer" parent="MenuItems" unique_id=1518904874]
 stream = ExtResource("5_loo7a")
 pitch_scale = 0.5
 
 [node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
 z_index = 288
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -551.0
-offset_top = -24.0
-offset_right = 601.99023
-offset_bottom = 533.0
+anchors_preset = -1
+anchor_left = 0.20050001
+anchor_top = -0.00025000126
+anchor_right = 0.80098426
+anchor_bottom = 0.42459375
+offset_left = 0.039978027
+offset_top = 0.3200016
+offset_right = -0.8897705
+offset_bottom = 0.52001953
 grow_horizontal = 2
 offset_transform_enabled = true
 texture = ExtResource("7_7467j")
 expand_mode = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
 visible = false
@@ -356,25 +345,29 @@ mouse_filter = 2
 color = Color(0.14044744, 0.14044747, 0.14044738, 1)
 
 [node name="Background" type="ColorRect" parent="." unique_id=222903332]
-layout_mode = 0
-offset_left = -117.0
-offset_top = -171.0
-offset_right = 2401.0
-offset_bottom = 1420.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.5921569)
+metadata/_edit_use_anchors_ = true
 
 [node name="BlackScreen" type="ColorRect" parent="." unique_id=2097454917]
 modulate = Color(0.006241691, 0.0062416834, 0, 1)
 z_index = 309
-layout_mode = 0
-offset_left = -121.0
-offset_top = -175.0
-offset_right = 2413.0
-offset_bottom = 1417.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 color = Color(0.9691369, 0.9691369, 0.9691368, 1)
 script = ExtResource("15_7467j")
+metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="BlackScreen" unique_id=53320831]
 one_shot = true

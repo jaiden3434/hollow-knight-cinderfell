@@ -1,13 +1,11 @@
 extends Button
 
 
-
-
+#Plays mouse hover sound effect.
 func _on_mouse_entered() -> void:
-	# Plays hover sound when mouse hovers
-	$SelectHover.play()
+	$"../SelectHover".play()
 	print("sfwe")
 
-
+#Plays mouse button press sound effect.
 func _on_pressed() -> void:
-	$SelectClick.play()
+	$"../SelectClick".play()
