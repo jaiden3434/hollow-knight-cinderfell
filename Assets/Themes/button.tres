@@ -1,6 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dpi4dbw01y1sl"]
 
 [ext_resource type="FontFile" uid="uid://dpmvke2rwlduk" path="res://Assets/Fonts/Cardo,Cinzel/Cardo/Cardo-Regular.ttf" id="1_174f8"]
+[ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="2_4rbuk"]
+[ext_resource type="FontFile" uid="uid://d1j8xyb7mavw7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-SemiBold.ttf" id="3_7tl46"]
 
 [resource]
 default_base_scale = 0.21
@@ -8,4 +10,10 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.8666667, 0, 0, 1)
 Button/font_sizes/font_size = 49
 Button/fonts/font = ExtResource("1_174f8")
+CheckButton/font_sizes/font_size = 49
+CheckButton/fonts/font = ExtResource("2_4rbuk")
+Label/font_sizes/font_size = 64
+Label/fonts/font = ExtResource("3_7tl46")
+OptionButton/font_sizes/font_size = 49
+OptionButton/fonts/font = ExtResource("1_174f8")
 RichTextLabel/fonts/normal_font = ExtResource("1_174f8")
