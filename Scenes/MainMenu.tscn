@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/button logic/video_button.gd" id="9_fh7cp"]
 [ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/button logic/controls_button.gd" id="10_8e205"]
 [ext_resource type="Script" uid="uid://cttjd7fxxqmnd" path="res://Assets/Scripts/button logic/graphics_button.gd" id="11_7467j"]
+[ext_resource type="Script" uid="uid://hmx08rur3fdp" path="res://Scenes/back_button.gd" id="12_2x1g0"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
 [ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Scenes/black_screen.gd" id="15_7467j"]
@@ -232,15 +233,15 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -239.0
-offset_right = 255.0
-offset_bottom = 523.83276
+anchors_preset = -1
+anchor_left = 0.365
+anchor_top = 0.31300002
+anchor_right = 0.633
+anchor_bottom = 0.90900004
+offset_left = -0.8000488
+offset_top = 49.359985
+offset_right = -0.35998535
+offset_bottom = 49.312744
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -249,6 +250,7 @@ mouse_filter = 2
 mouse_behavior_recursive = 2
 theme = SubResource("Theme_v8156")
 script = ExtResource("8_rrcx7")
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
 layout_mode = 2
@@ -269,13 +271,6 @@ text = "Video
 flat = true
 script = ExtResource("9_fh7cp")
 
-[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Video" unique_id=236576291]
-stream = ExtResource("5_loo7a")
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Video" unique_id=542668932]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
-
 [node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689]
 layout_mode = 2
 theme = ExtResource("2_xim88")
@@ -283,13 +278,6 @@ text = "Controls
 "
 flat = true
 script = ExtResource("10_8e205")
-
-[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Controls" unique_id=417501534]
-stream = ExtResource("5_loo7a")
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Controls" unique_id=1264146125]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
 
 [node name="Graphics" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1536576483]
 layout_mode = 2
@@ -299,16 +287,13 @@ text = "Graphics
 flat = true
 script = ExtResource("11_7467j")
 
-[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Graphics" unique_id=367667173]
-stream = ExtResource("5_loo7a")
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="SettingsPopup/SettingsItems/Graphics" unique_id=199987942]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
-
-[node name="SelectHover" type="AudioStreamPlayer" parent="SettingsPopup" unique_id=2012050158]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
+[node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Back
+"
+flat = true
+script = ExtResource("12_2x1g0")
 
 [node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
 position = Vector2(-367, 521)
@@ -381,3 +366,11 @@ autostart = true
 [connection signal="mouse_entered" from="MenuItems/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_entered" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Video" to="SettingsPopup/SettingsItems/Video" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsPopup/SettingsItems/Video" to="SettingsPopup/SettingsItems/Video" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Controls" to="SettingsPopup/SettingsItems/Controls" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsPopup/SettingsItems/Controls" to="SettingsPopup/SettingsItems/Controls" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Graphics" to="SettingsPopup/SettingsItems/Graphics" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsPopup/SettingsItems/Graphics" to="SettingsPopup/SettingsItems/Graphics" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Back" to="SettingsPopup/SettingsItems/Back" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsPopup/SettingsItems/Back" to="SettingsPopup/SettingsItems/Back" method="_on_pressed"]

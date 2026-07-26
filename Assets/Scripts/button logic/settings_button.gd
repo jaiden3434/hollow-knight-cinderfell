@@ -9,3 +9,6 @@ func _on_mouse_entered() -> void:
 func _on_pressed() -> void:
 	$"../SelectClick".play()
 	$"../../SettingsPopup".show()
+	$"../Start".hide()
+	$".".hide()
+	$"../Quit".hide()
