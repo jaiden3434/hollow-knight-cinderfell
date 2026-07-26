@@ -9,8 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	# Smoother camera movement, sets camera position to players with a delay
-	position = lerp(position, $"..".position, 0.25)
-	
+	#position = lerp(position, $"..".position, 0.25)
+	pass 
 
-	print($"..".velocity.y)
 	

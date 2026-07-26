@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dh8ohp6n13016"]
+
+[ext_resource type="Script" uid="uid://dappma0dux6do" path="res://Assets/Scripts/globals.gd" id="1_r36ar"]
+
+[node name="Globals config" type="Node" unique_id=1789608567]
+script = ExtResource("1_r36ar")
+playerSpeed = 700.0
+jumpHeight = 2000.0
+fallMultiplier = 1.05

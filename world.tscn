@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://be6uwv5gjxtbp"]
+
+[ext_resource type="PackedScene" uid="uid://m0tqhnn2n6xk" path="res://Scenes/room_0.tscn" id="1_f3sb7"]
+[ext_resource type="PackedScene" uid="uid://doo45yadqp2kf" path="res://Scenes/player.tscn" id="2_tlwt5"]
+
+[node name="Node2D" type="Node2D" unique_id=762181434]
+
+[node name="room_0" parent="." unique_id=1611087881 instance=ExtResource("1_f3sb7")]
+
+[node name="CharacterBody2D" parent="." unique_id=1058156551 instance=ExtResource("2_tlwt5")]
+z_index = -1

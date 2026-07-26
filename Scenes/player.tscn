@@ -20,15 +20,17 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
+	print(velocity.y)
+	
 	if velocity.y > 0.0:
-		velocity.y = lerp(velocity.y, velocity.y * 1.15, 0.2)
+		velocity.y = lerp(velocity.y, velocity.y * Globals.fallMultiplier, 1.5)
 		# If we are falling, fall faster than normal
 		
 	var axis = Input.get_axis(\"left\", \"right\")
 	
 	if Globals.canMove:
 		if axis:
-			velocity.x = 300.0 * axis
+			velocity.x = Globals.playerSpeed * axis
 		else:
 			velocity.x = 0.0
 	
@@ -44,12 +46,16 @@ func _physics_process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
-size = Vector2(151, 150)
+size = Vector2(191, 183.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1058156551]
+scale = Vector2(1, 2)
+slide_on_ceiling = false
 script = SubResource("GDScript_fkybt")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=860272574]
+offset = Vector2(0, -500)
+zoom = Vector2(0.3, 0.3)
 process_callback = 0
 limit_enabled = false
 position_smoothing_enabled = true
@@ -86,8 +92,9 @@ player = NodePath("../..")
 idle = NodePath("../Idle")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("jump", "idle")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("player", "jump", "idle")]
 script = ExtResource("6_3smsa")
+player = NodePath("../..")
 jump = NodePath("../Jump")
 idle = NodePath(".")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"

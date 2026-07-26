@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Globals="*uid://dappma0dux6do"
+Globals="*uid://dh8ohp6n13016"
 
 [display]
 
@@ -101,6 +101,7 @@ down={
 [physics]
 
 3d/physics_engine="Jolt Physics"
+2d/default_gravity=3243.255
 
 [rendering]
 
