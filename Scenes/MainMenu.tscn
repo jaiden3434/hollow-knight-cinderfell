@@ -15,7 +15,16 @@
 [ext_resource type="Script" uid="uid://hmx08rur3fdp" path="res://Scenes/back_button.gd" id="12_2x1g0"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
+<<<<<<< Updated upstream
 [ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Scenes/black_screen.gd" id="15_7467j"]
+=======
+[ext_resource type="Script" uid="uid://du8ti7w4jq6td" path="res://Scenes/check_button.gd" id="13_riqfo"]
+[ext_resource type="FontFile" uid="uid://dpmvke2rwlduk" path="res://Assets/Fonts/Cardo,Cinzel/Cardo/Cardo-Regular.ttf" id="14_7v4os"]
+[ext_resource type="Script" uid="uid://c6bju73iytgeg" path="res://Scenes/graphics_back_button.gd" id="14_pjscj"]
+[ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Scenes/black_screen.gd" id="15_7467j"]
+[ext_resource type="Script" uid="uid://ddniga3vnxxbw" path="res://Scenes/controls_back_button.gd" id="15_m7n2d"]
+[ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="15_pjscj"]
+>>>>>>> Stashed changes
 
 [sub_resource type="Environment" id="Environment_7467j"]
 background_mode = 3
@@ -235,13 +244,13 @@ visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.365
-anchor_top = 0.31300002
+anchor_top = 0.35200003
 anchor_right = 0.633
-anchor_bottom = 0.90900004
+anchor_bottom = 0.9480001
 offset_left = -0.8000488
-offset_top = 49.359985
+offset_top = -0.5600281
 offset_right = -0.35998535
-offset_bottom = 49.312744
+offset_bottom = -0.6072998
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -263,22 +272,38 @@ theme = SubResource("Theme_4rbuk")
 alignment = 1
 last_wrap_alignment = 1
 
+<<<<<<< Updated upstream
 [node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826]
+=======
+[node name="Settings" type="Label" parent="SettingsPopup/SettingsItems" unique_id=1590721685]
+>>>>>>> Stashed changes
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_xim88")
-text = "Video
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="Graphics" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_xim88")
+text = "Graphics
 "
 flat = true
 script = ExtResource("9_fh7cp")
 
 [node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_xim88")
 text = "Controls
 "
 flat = true
 script = ExtResource("10_8e205")
 
+<<<<<<< Updated upstream
 [node name="Graphics" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1536576483]
 layout_mode = 2
 theme = ExtResource("2_xim88")
@@ -288,18 +313,243 @@ flat = true
 script = ExtResource("11_7467j")
 
 [node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102]
+=======
+[node name="Music&SFX" type="Button" parent="SettingsPopup/SettingsItems" unique_id=548890413]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_xim88")
+text = "Music & SFX
+"
+flat = true
+
+[node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
+>>>>>>> Stashed changes
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
 theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
 script = ExtResource("12_2x1g0")
+<<<<<<< Updated upstream
 
 [node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
 position = Vector2(-367, 521)
 stream = ExtResource("6_if7li")
 autoplay = true
 
+=======
+selectHoverSFX = NodePath("../../../SelectHover")
+selectClickSFX = NodePath("../../../SelectClick")
+menuItems = NodePath("../../../MenuItems")
+settingsPopup = NodePath("../..")
+videoPopup = NodePath("../../../VideoPopup")
+controlsPopup = NodePath("../../../ControlsPopup")
+start = NodePath("../../../MenuItems/Start")
+settings = NodePath("../../../MenuItems/Settings")
+quit = NodePath("../../../MenuItems/Quit")
+
+[node name="VideoPopup" type="PanelContainer" parent="." unique_id=16329936]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.365
+anchor_top = 0.35200003
+anchor_right = 0.633
+anchor_bottom = 0.9480001
+offset_left = -0.8000488
+offset_top = -0.5600281
+offset_right = -0.35998535
+offset_bottom = -0.60705566
+pivot_offset = Vector2(150, 125)
+layout_direction = 1
+mouse_filter = 2
+mouse_behavior_recursive = 2
+theme = SubResource("Theme_v8156")
+script = ExtResource("8_rrcx7")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VideoPopup" unique_id=2021875552]
+layout_mode = 2
+offset_transform_position_ratio = Vector2(0.3, 0)
+offset_transform_scale = Vector2(0.9, 0.9)
+offset_transform_visual_only = false
+
+[node name="BoxContainer" type="VBoxContainer" parent="VideoPopup/ScrollContainer" unique_id=1428891213]
+layout_mode = 2
+size_flags_horizontal = 6
+offset_transform_enabled = true
+offset_transform_position = Vector2(6, 0)
+alignment = 1
+
+[node name="SettingsItems" type="FlowContainer" parent="VideoPopup/ScrollContainer/BoxContainer" unique_id=1410725955]
+layout_mode = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 4.9
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -15)
+theme = SubResource("Theme_4rbuk")
+alignment = 1
+last_wrap_alignment = 1
+
+[node name="Graphics" type="Label" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1451911076]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_xim88")
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="MSAA" type="OptionButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=441712158]
+z_index = 1
+layout_mode = 2
+theme = ExtResource("2_xim88")
+flat = true
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/text = "MSAA"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "2x"
+popup/item_1/id = 1
+popup/item_2/text = "4x"
+popup/item_2/id = 2
+popup/item_3/id = 3
+
+[node name="HDR" type="CheckButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1592347104]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "HDR"
+script = ExtResource("13_riqfo")
+
+[node name="V-Sync" type="CheckButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=561305494]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "V-Sync"
+script = ExtResource("13_riqfo")
+
+[node name="Resolution" type="OptionButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1594687254]
+layout_mode = 2
+theme = SubResource("Theme_m7n2d")
+item_count = 13
+popup/item_0/text = "Resolution"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+popup/item_2/text = "2560x1440"
+popup/item_2/id = 2
+popup/item_3/text = "3840x2160"
+popup/item_3/id = 3
+popup/item_4/text = "1680x1050"
+popup/item_4/id = 4
+popup/item_5/text = "1920x1200"
+popup/item_5/id = 5
+popup/item_6/text = " 1024x768"
+popup/item_6/id = 6
+popup/item_7/text = "1280x960"
+popup/item_7/id = 7
+popup/item_8/text = "2560x1080"
+popup/item_8/id = 8
+popup/item_9/text = "3440x1440"
+popup/item_9/id = 9
+popup/item_10/text = "1280x720"
+popup/item_10/id = 10
+popup/item_11/text = "1600x900"
+popup/item_11/id = 11
+popup/item_12/text = "1366x768"
+popup/item_12/id = 12
+
+[node name="Back" type="Button" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1932140600]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xim88")
+text = "Back
+"
+flat = true
+script = ExtResource("14_pjscj")
+
+[node name="ControlsPopup" type="PanelContainer" parent="." unique_id=230861360]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.365
+anchor_top = 0.35200003
+anchor_right = 0.633
+anchor_bottom = 0.9480001
+offset_left = -0.8000488
+offset_top = -0.5600281
+offset_right = -0.35998535
+offset_bottom = -0.6072998
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 125)
+layout_direction = 1
+mouse_filter = 2
+mouse_behavior_recursive = 2
+theme = SubResource("Theme_v8156")
+script = ExtResource("8_rrcx7")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ControlsPopup" unique_id=392466930]
+layout_mode = 2
+offset_transform_position = Vector2(0, 100)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+
+[node name="BoxContainer" type="VBoxContainer" parent="ControlsPopup/ScrollContainer" unique_id=260261569]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1581547303]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_xim88")
+text = "Rebindings"
+horizontal_alignment = 1
+
+[node name="Desc" type="Label" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=944441489]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("2_xim88")
+theme_override_fonts/font = ExtResource("15_pjscj")
+theme_override_font_sizes/font_size = 26
+text = "Click on each action to rebind."
+
+[node name="Jump" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1099392725]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Jump"
+
+[node name="Dash" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=616129137]
+layout_mode = 2
+text = "Dash"
+
+[node name="Attack" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1755098980]
+layout_mode = 2
+text = "Attack"
+
+[node name="Move Left" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=344279726]
+layout_mode = 2
+text = "Move Left"
+
+[node name="Move Right" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=886131579]
+layout_mode = 2
+text = "Move Right"
+
+[node name="Back" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=88242179]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_xim88")
+text = "Back
+"
+flat = true
+script = ExtResource("15_m7n2d")
+
+>>>>>>> Stashed changes
 [node name="VersionCounter" type="Label" parent="." unique_id=1409264605]
 layout_mode = 1
 anchors_preset = 1
@@ -358,6 +608,27 @@ metadata/_edit_use_anchors_ = true
 one_shot = true
 autostart = true
 
+<<<<<<< Updated upstream
+=======
+[node name="Camera2D" type="Camera2D" parent="." unique_id=550578248]
+anchor_mode = 0
+limit_enabled = false
+position_smoothing_enabled = true
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="." unique_id=2054045676]
+stream = ExtResource("5_loo7a")
+volume_db = -0.5
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="." unique_id=1806115131]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
+position = Vector2(-367, 521)
+stream = ExtResource("6_if7li")
+autoplay = true
+
+>>>>>>> Stashed changes
 [connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
 [connection signal="mouse_entered" from="MenuItems/Settings" to="." method="_on_settings_mouse_entered"]
@@ -366,8 +637,8 @@ autostart = true
 [connection signal="mouse_entered" from="MenuItems/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_entered" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_pressed"]
-[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Video" to="SettingsPopup/SettingsItems/Video" method="_on_mouse_entered"]
-[connection signal="pressed" from="SettingsPopup/SettingsItems/Video" to="SettingsPopup/SettingsItems/Video" method="_on_pressed"]
+[connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Graphics" to="SettingsPopup/SettingsItems/Graphics" method="_on_mouse_entered"]
+[connection signal="pressed" from="SettingsPopup/SettingsItems/Graphics" to="SettingsPopup/SettingsItems/Graphics" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Controls" to="SettingsPopup/SettingsItems/Controls" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsPopup/SettingsItems/Controls" to="SettingsPopup/SettingsItems/Controls" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Graphics" to="SettingsPopup/SettingsItems/Graphics" method="_on_mouse_entered"]
