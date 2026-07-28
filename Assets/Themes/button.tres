@@ -5,19 +5,19 @@
 [ext_resource type="FontFile" uid="uid://d1j8xyb7mavw7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-SemiBold.ttf" id="3_7tl46"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tl46"]
-bg_color = Color(0.080783345, 0.080783345, 0.0807833, 0.34509805)
+bg_color = Color(0.08627451, 0.08627451, 0.08627451, 1)
 border_color = Color(1, 1, 1, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
 expand_margin_left = 5.0
 expand_margin_top = 5.0
 expand_margin_right = 5.0
 expand_margin_bottom = 5.0
-shadow_color = Color(0, 0, 0, 0.2627451)
-shadow_size = 25
+shadow_color = Color(0.029506557, 0.029506557, 0.029506557, 0.38039216)
+shadow_size = 30
+anti_aliasing_size = 6.59
 
 [resource]
 default_base_scale = 0.21
