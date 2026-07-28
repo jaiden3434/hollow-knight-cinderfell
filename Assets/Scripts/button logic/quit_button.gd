@@ -9,8 +9,8 @@ func _on_mouse_entered() -> void:
 
 
 func _on_pressed() -> void:
-# fades out screen, i really would like it to last longer but this is as best as i can get it
-	$"../../AnimationPlayer".play("fade_out")
+# fades out screen
+	$"../../Fade".play("fade_out")
 #Plays mouse button press sound effect.
 	selectClickSFX.play()
 #Quits the game after the sound effect is finished.

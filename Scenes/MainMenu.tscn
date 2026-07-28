@@ -18,120 +18,6 @@
 [ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Assets/Scripts/button logic/black_screen.gd" id="15_7467j"]
 [ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="15_pjscj"]
 
-[sub_resource type="Environment" id="Environment_7467j"]
-background_mode = 3
-glow_enabled = true
-glow_normalized = true
-glow_intensity = 0.51
-glow_strength = 1.43
-glow_bloom = 0.17
-glow_blend_mode = 0
-glow_hdr_threshold = 4.0
-glow_hdr_scale = 4.0
-glow_hdr_luminance_cap = 80.0
-adjustment_enabled = true
-adjustment_brightness = 1.5
-
-[sub_resource type="Theme" id="Theme_4rbuk"]
-FlowContainer/constants/v_separation = 117
-
-[sub_resource type="Shader" id="Shader_g4887"]
-code = "shader_type canvas_item;
-
-// Credit for the original shader goes to Gonkee: https://github.com/Gonkee/Gonkees-Shaders/blob/master/fog.shader
-// Pixelate by Godot Shaders: https://godotshaders.com/shader/pixelate/
-
-uniform vec4 color : source_color;
-uniform int OCTAVES = 4;
-uniform bool enable_pixelation = true;
-uniform int pixelation_amount = 150;
-uniform sampler2D fog_mask;  // Texture mask for fog control
-uniform vec2 fog_direction = vec2(1.0, 1.0); // Use -1 and 1 values to change direction. Increase the speed in that direction with values higher/lower than 1
-uniform bool scroll_noise_tex = false; 
-uniform vec2 noise_scroll_direction = vec2(1.0, 0.0);  // Direction to scroll the noise texture
-
-float rand(vec2 coord){
-    return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
-}
-
-float noise(vec2 coord){
-    vec2 i = floor(coord);
-    vec2 f = fract(coord);
-
-    float a = rand(i);
-    float b = rand(i + vec2(1.0, 0.0));
-    float c = rand(i + vec2(0.0, 1.0));
-    float d = rand(i + vec2(1.0, 1.0));
-
-    vec2 cubic = f * f * (3.0 - 2.0 * f);
-
-    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
-}
-
-float fbm(vec2 coord){
-    float value = 0.0;
-    float scale = 0.5;
-
-    for(int i = 0; i < OCTAVES; i++){
-        value += noise(coord) * scale;
-        coord *= 2.0;
-        scale *= 0.5;
-    }
-    return value;
-}
-
-void fragment() {
-    vec2 grid_uv = UV;
-    if (enable_pixelation) {
-        grid_uv = round(UV * float(pixelation_amount)) / float(pixelation_amount);
-    }
-    
-    // Compute noise based on pixelated or non-pixelated coordinates
-    vec2 coord = grid_uv * 20.0;
-
-    // Scroll the noise texture if enabled
-    if (scroll_noise_tex) {
-        coord += noise_scroll_direction * TIME;
-    }
-
-    vec2 motion = vec2(fbm(coord + fog_direction * TIME));
-
-    float final = fbm(coord + motion);
-    
-    // Get the fog density from the texture mask
-    float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
-    
-    // Modulate the fog density by the mask value
-    final *= mask_value;
-
-    // Use the alpha value of the color to control the overall fog opacity
-    COLOR = vec4(color.rgb, final * color.a * 0.5);
-}"
-
-[sub_resource type="Gradient" id="Gradient_7467j"]
-colors = PackedColorArray(0, 0, 0, 0.5372549, 1, 1, 1, 0.53333336)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2x1g0"]
-frequency = 0.0129
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7a8ye"]
-width = 1024
-height = 1024
-noise = SubResource("FastNoiseLite_2x1g0")
-color_ramp = SubResource("Gradient_7467j")
-seamless = true
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_riqfo"]
-shader = SubResource("Shader_g4887")
-shader_parameter/color = Color(0.8352941, 0.8352941, 0.8352941, 0.4862745)
-shader_parameter/OCTAVES = 4
-shader_parameter/enable_pixelation = false
-shader_parameter/pixelation_amount = 0
-shader_parameter/fog_mask = SubResource("NoiseTexture2D_7a8ye")
-shader_parameter/fog_direction = Vector2(1, 1)
-shader_parameter/scroll_noise_tex = true
-shader_parameter/noise_scroll_direction = Vector2(1, 0)
-
 [sub_resource type="Animation" id="Animation_2x1g0"]
 length = 0.001
 tracks/0/type = "bezier"
@@ -280,6 +166,120 @@ _data = {
 &"fade_out": SubResource("Animation_yxkem")
 }
 
+[sub_resource type="Environment" id="Environment_7467j"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 0.51
+glow_strength = 1.43
+glow_bloom = 0.17
+glow_blend_mode = 0
+glow_hdr_threshold = 4.0
+glow_hdr_scale = 4.0
+glow_hdr_luminance_cap = 80.0
+adjustment_enabled = true
+adjustment_brightness = 1.5
+
+[sub_resource type="Theme" id="Theme_4rbuk"]
+FlowContainer/constants/v_separation = 117
+
+[sub_resource type="Shader" id="Shader_g4887"]
+code = "shader_type canvas_item;
+
+// Credit for the original shader goes to Gonkee: https://github.com/Gonkee/Gonkees-Shaders/blob/master/fog.shader
+// Pixelate by Godot Shaders: https://godotshaders.com/shader/pixelate/
+
+uniform vec4 color : source_color;
+uniform int OCTAVES = 4;
+uniform bool enable_pixelation = true;
+uniform int pixelation_amount = 150;
+uniform sampler2D fog_mask;  // Texture mask for fog control
+uniform vec2 fog_direction = vec2(1.0, 1.0); // Use -1 and 1 values to change direction. Increase the speed in that direction with values higher/lower than 1
+uniform bool scroll_noise_tex = false; 
+uniform vec2 noise_scroll_direction = vec2(1.0, 0.0);  // Direction to scroll the noise texture
+
+float rand(vec2 coord){
+    return fract(sin(dot(coord, vec2(56, 78)) * 1000.0) * 1000.0);
+}
+
+float noise(vec2 coord){
+    vec2 i = floor(coord);
+    vec2 f = fract(coord);
+
+    float a = rand(i);
+    float b = rand(i + vec2(1.0, 0.0));
+    float c = rand(i + vec2(0.0, 1.0));
+    float d = rand(i + vec2(1.0, 1.0));
+
+    vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+    return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+float fbm(vec2 coord){
+    float value = 0.0;
+    float scale = 0.5;
+
+    for(int i = 0; i < OCTAVES; i++){
+        value += noise(coord) * scale;
+        coord *= 2.0;
+        scale *= 0.5;
+    }
+    return value;
+}
+
+void fragment() {
+    vec2 grid_uv = UV;
+    if (enable_pixelation) {
+        grid_uv = round(UV * float(pixelation_amount)) / float(pixelation_amount);
+    }
+    
+    // Compute noise based on pixelated or non-pixelated coordinates
+    vec2 coord = grid_uv * 20.0;
+
+    // Scroll the noise texture if enabled
+    if (scroll_noise_tex) {
+        coord += noise_scroll_direction * TIME;
+    }
+
+    vec2 motion = vec2(fbm(coord + fog_direction * TIME));
+
+    float final = fbm(coord + motion);
+    
+    // Get the fog density from the texture mask
+    float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
+    
+    // Modulate the fog density by the mask value
+    final *= mask_value;
+
+    // Use the alpha value of the color to control the overall fog opacity
+    COLOR = vec4(color.rgb, final * color.a * 0.5);
+}"
+
+[sub_resource type="Gradient" id="Gradient_7467j"]
+colors = PackedColorArray(0, 0, 0, 0.5372549, 1, 1, 1, 0.53333336)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2x1g0"]
+frequency = 0.0129
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7a8ye"]
+width = 1024
+height = 1024
+noise = SubResource("FastNoiseLite_2x1g0")
+color_ramp = SubResource("Gradient_7467j")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_riqfo"]
+shader = SubResource("Shader_g4887")
+shader_parameter/color = Color(0.8352941, 0.8352941, 0.8352941, 0.4862745)
+shader_parameter/OCTAVES = 4
+shader_parameter/enable_pixelation = false
+shader_parameter/pixelation_amount = 0
+shader_parameter/fog_mask = SubResource("NoiseTexture2D_7a8ye")
+shader_parameter/fog_direction = Vector2(1, 1)
+shader_parameter/scroll_noise_tex = true
+shader_parameter/noise_scroll_direction = Vector2(1, 0)
+
 [node name="Main Menu" type="Control" unique_id=1514424175]
 layout_mode = 3
 anchors_preset = 15
@@ -289,22 +289,82 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7467j")
 
+[node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
+z_index = 288
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.20050001
+anchor_top = -0.00025000126
+anchor_right = 0.80098426
+anchor_bottom = 0.42459375
+offset_left = 0.039978027
+offset_top = 0.3200016
+offset_right = -0.8897705
+offset_bottom = 0.52001953
+grow_horizontal = 2
+offset_transform_enabled = true
+texture = ExtResource("7_7467j")
+expand_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=550578248]
+anchor_mode = 0
+limit_enabled = false
+position_smoothing_enabled = true
+
+[node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
+position = Vector2(-367, 521)
+stream = ExtResource("6_if7li")
+volume_db = 12.458
+autoplay = true
+
+[node name="MainMenuBgn" type="AudioStreamPlayer" parent="." unique_id=1214470968]
+stream = ExtResource("13_fh7cp")
+volume_db = -25.416
+autoplay = true
+
+[node name="SelectHover" type="AudioStreamPlayer" parent="." unique_id=2054045676]
+stream = ExtResource("5_loo7a")
+volume_db = -0.5
+
+[node name="SelectClick" type="AudioStreamPlayer" parent="." unique_id=1806115131]
+stream = ExtResource("5_loo7a")
+pitch_scale = 0.5
+
+[node name="Fade" type="AnimationPlayer" parent="." unique_id=678413240]
+libraries/ = SubResource("AnimationLibrary_7v4os")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=351848500]
 environment = SubResource("Environment_7467j")
+
+[node name="VersionCounter" type="Label" parent="." unique_id=1409264605]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 59.0
+offset_right = -84.0
+offset_bottom = 82.0
+grow_horizontal = 0
+theme = ExtResource("2_xim88")
+theme_override_font_sizes/font_size = 24
+text = "Version"
+horizontal_alignment = 1
+script = ExtResource("13_8e205")
 
 [node name="MenuItems" type="FlowContainer" parent="." unique_id=882890977]
 z_index = 1
 z_as_relative = false
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = -468.0
-offset_right = 97.0
-offset_bottom = -54.0
+anchors_preset = -1
+anchor_left = 0.45000002
+anchor_top = 0.59900004
+anchor_right = 0.551
+anchor_bottom = 0.95800006
+offset_left = -6.1035156e-05
+offset_top = 45.27997
+offset_right = -0.92004395
+offset_bottom = -0.2401123
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
@@ -313,6 +373,7 @@ mouse_filter = 2
 theme = SubResource("Theme_4rbuk")
 alignment = 1
 last_wrap_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Start" type="Button" parent="MenuItems" unique_id=1432760030 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
@@ -333,6 +394,13 @@ script = ExtResource("6_koqhg")
 selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
+[node name="Credits" type="Button" parent="MenuItems" unique_id=1048210977]
+layout_mode = 2
+theme = ExtResource("2_xim88")
+text = "Credits
+"
+flat = true
+
 [node name="Quit" type="Button" parent="MenuItems" unique_id=778726894 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
 theme = ExtResource("2_xim88")
@@ -343,37 +411,19 @@ script = ExtResource("6_xim88")
 selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
-[node name="Titlecard" type="TextureRect" parent="." unique_id=917577809]
-z_index = 288
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.20050001
-anchor_top = -0.00025000126
-anchor_right = 0.80098426
-anchor_bottom = 0.42459375
-offset_left = 0.039978027
-offset_top = 0.3200016
-offset_right = -0.8897705
-offset_bottom = 0.52001953
-grow_horizontal = 2
-offset_transform_enabled = true
-texture = ExtResource("7_7467j")
-expand_mode = 1
-metadata/_edit_use_anchors_ = true
-
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
 visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.365
-anchor_top = 0.31300002
+anchor_top = 0.35200003
 anchor_right = 0.633
-anchor_bottom = 0.90900004
+anchor_bottom = 0.952
 offset_left = -0.8000488
-offset_top = 49.359985
+offset_top = -0.5600281
 offset_right = -0.35998535
-offset_bottom = 49.312744
+offset_bottom = -5.727295
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -387,16 +437,25 @@ metadata/_edit_use_anchors_ = true
 [node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-size_flags_stretch_ratio = 4.9
+size_flags_stretch_ratio = 0.0
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -15)
 theme = SubResource("Theme_4rbuk")
 alignment = 1
-last_wrap_alignment = 1
+
+[node name="Settings" type="Label" parent="SettingsPopup/SettingsItems" unique_id=1246539775]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+offset_transform_position_ratio = Vector2(0, -3.135)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_xim88")
 text = "Video
 "
@@ -407,6 +466,7 @@ selectClickSFX = NodePath("../../../SelectClick")
 
 [node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_xim88")
 text = "Controls
 "
@@ -417,9 +477,9 @@ selectClickSFX = NodePath("../../../SelectClick")
 
 [node name="Audio" type="Button" parent="SettingsPopup/SettingsItems" unique_id=322345623 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_xim88")
-text = "Audio
-"
+text = "   Audio   "
 flat = true
 script = ExtResource("10_riqfo")
 selectHoverSFX = NodePath("../../../SelectHover")
@@ -427,10 +487,12 @@ selectClickSFX = NodePath("../../../SelectClick")
 
 [node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
+icon_alignment = 1
 script = ExtResource("12_2x1g0")
 selectHoverSFX = NodePath("../../../SelectHover")
 selectClickSFX = NodePath("../../../SelectClick")
@@ -470,95 +532,17 @@ text = "Video"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="VideoPopup" unique_id=1930816943]
-z_index = 1
+[node name="Brightness" type="Label" parent="VideoPopup" unique_id=1213226295]
 layout_mode = 2
-size_flags_stretch_ratio = 16.55
-mouse_filter = 2
 
-[node name="Resolution" type="Button" parent="VideoPopup/Buttons" unique_id=1028054224]
+[node name="Resolution" type="Label" parent="VideoPopup" unique_id=1714025419]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.065, 2.03)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-text = "Resolution:"
-flat = true
-alignment = 0
 
-[node name="Full Screen" type="Button" parent="VideoPopup/Buttons" unique_id=1873200441]
+[node name="V-Sync" type="Label" parent="VideoPopup" unique_id=223513453]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.065, 2.03)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-text = "Full Screen:"
-flat = true
-alignment = 0
 
-[node name="V-Sync" type="Button" parent="VideoPopup/Buttons" unique_id=309559290]
+[node name="FullScreen" type="Label" parent="VideoPopup" unique_id=662012576]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.065, 2.03)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-text = "V-Sync:"
-flat = true
-alignment = 0
-
-[node name="States" type="VBoxContainer" parent="VideoPopup" unique_id=737391504]
-z_index = 1
-layout_mode = 2
-size_flags_stretch_ratio = 16.55
-mouse_filter = 2
-
-[node name="Resolution" type="Label" parent="VideoPopup/States" unique_id=1863467648]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(-0.185, 2.355)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-theme_override_fonts/font = ExtResource("15_pjscj")
-theme_override_font_sizes/font_size = 49
-text = "resolution"
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Full Screen" type="Label" parent="VideoPopup/States" unique_id=72890058]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(-0.72, 2.355)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-theme_override_fonts/font = ExtResource("15_pjscj")
-theme_override_font_sizes/font_size = 49
-text = "on"
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="V-Sync" type="Label" parent="VideoPopup/States" unique_id=2002673556]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(-0.72, 2.355)
-offset_transform_visual_only = false
-theme = ExtResource("2_xim88")
-theme_override_fonts/font = ExtResource("15_pjscj")
-theme_override_font_sizes/font_size = 49
-text = "on"
-horizontal_alignment = 2
-vertical_alignment = 2
 
 [node name="Back" type="Button" parent="VideoPopup" unique_id=214886495 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
@@ -588,13 +572,13 @@ z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.365
-anchor_top = 0.31300002
+anchor_top = 0.35200003
 anchor_right = 0.633
-anchor_bottom = 0.90900004
+anchor_bottom = 0.9480001
 offset_left = -0.8000488
-offset_top = 49.359985
+offset_top = -0.5600281
 offset_right = -0.35998535
-offset_bottom = 49.312744
+offset_bottom = -0.6072998
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -609,8 +593,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
-size_flags_stretch_ratio = 14.19
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0.02, 0)
 offset_transform_scale = Vector2(0.9, 0.9)
 offset_transform_visual_only = false
@@ -618,6 +600,8 @@ theme = ExtResource("2_xim88")
 
 [node name="BoxContainer" type="VBoxContainer" parent="ControlsPopup/ScrollContainer" unique_id=260261569]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1581547303]
 layout_mode = 2
@@ -627,14 +611,17 @@ horizontal_alignment = 1
 
 [node name="Desc" type="Label" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=944441489]
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("2_xim88")
 theme_override_fonts/font = ExtResource("15_pjscj")
 theme_override_font_sizes/font_size = 35
 text = "Click on each action to rebind."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="Jump" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1099392725]
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
@@ -642,35 +629,31 @@ text = "Jump"
 
 [node name="Dash" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=616129137]
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 text = "Dash"
 
 [node name="Attack" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1755098980]
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 text = "Attack"
 
 [node name="Move Left" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=344279726]
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 text = "Move Left"
 
 [node name="Move Right" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=886131579]
 layout_mode = 2
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 text = "Move Right"
 
 [node name="Back" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=790407864 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0, 1.77)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
@@ -693,14 +676,14 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.365
-anchor_top = 0.31300002
+anchor_left = 0.36500004
+anchor_top = 0.40200004
 anchor_right = 0.633
-anchor_bottom = 0.90900004
+anchor_bottom = 0.90203696
 offset_left = -0.8000488
-offset_top = 49.359985
+offset_top = -0.5600281
 offset_right = -0.35998535
-offset_bottom = 49.312744
+offset_bottom = -0.6072998
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -716,7 +699,6 @@ layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 5
 size_flags_stretch_ratio = 14.19
-offset_transform_enabled = true
 offset_transform_position_ratio = Vector2(0.02, 0)
 offset_transform_scale = Vector2(0.9, 0.9)
 offset_transform_visual_only = false
@@ -724,10 +706,12 @@ theme = ExtResource("2_xim88")
 
 [node name="BoxContainer" type="VBoxContainer" parent="AudioPopup/ScrollContainer" unique_id=2134076778]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Title" type="Label" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=346280681]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 0)
 theme = ExtResource("2_xim88")
 text = "Audio"
@@ -735,7 +719,7 @@ horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=733546246]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 2.225)
 theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
@@ -745,7 +729,7 @@ vertical_alignment = 1
 
 [node name="SFX Volume" type="HSlider" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=823048091]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 1
 offset_transform_position_ratio = Vector2(0.52, 5.38)
 offset_transform_scale = Vector2(2, 2)
 offset_transform_visual_only = false
@@ -753,7 +737,7 @@ ticks_on_borders = true
 
 [node name="Label2" type="Label" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=841917348]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 3.395)
 theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
@@ -763,7 +747,7 @@ vertical_alignment = 1
 
 [node name="Enemy SFX Volume" type="HSlider" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=1780346665]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 1
 offset_transform_position_ratio = Vector2(0.52, 7.88)
 offset_transform_scale = Vector2(2, 2)
 offset_transform_visual_only = false
@@ -771,7 +755,7 @@ ticks_on_borders = true
 
 [node name="Label3" type="Label" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=708868043]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 4.635)
 theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
@@ -781,7 +765,7 @@ vertical_alignment = 1
 
 [node name="Music Volume" type="HSlider" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=94438993]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 1
 offset_transform_position_ratio = Vector2(0.52, 10.38)
 offset_transform_scale = Vector2(2, 2)
 offset_transform_visual_only = false
@@ -789,7 +773,7 @@ ticks_on_borders = true
 
 [node name="Back" type="Button" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=600199268 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
-offset_transform_enabled = true
+size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 4.93)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
@@ -806,27 +790,6 @@ controlsPopup = NodePath("../../..")
 start = NodePath("../../../../MenuItems/Start")
 settings = NodePath("../../../../MenuItems/Settings")
 quit = NodePath("../../../../MenuItems/Quit")
-
-[node name="VersionCounter" type="Label" parent="." unique_id=1409264605]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -144.0
-offset_top = 59.0
-offset_right = -84.0
-offset_bottom = 82.0
-grow_horizontal = 0
-theme = ExtResource("2_xim88")
-theme_override_font_sizes/font_size = 24
-text = "Version"
-horizontal_alignment = 1
-script = ExtResource("13_8e205")
-
-[node name="MainMenuBgn" type="AudioStreamPlayer" parent="." unique_id=1214470968]
-stream = ExtResource("13_fh7cp")
-volume_db = -25.416
-autoplay = true
 
 [node name="Fog" type="ColorRect" parent="." unique_id=1856413664]
 z_index = -5
@@ -869,31 +832,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.96862745, 0.96862745, 0.96862745, 0)
 script = ExtResource("15_7467j")
-metadata/_edit_use_anchors_ = true
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=550578248]
-position = Vector2(950, 645)
-offset = Vector2(245, 0)
-zoom = Vector2(1.05, 1.05)
-limit_enabled = false
-position_smoothing_enabled = true
-
-[node name="SelectHover" type="AudioStreamPlayer" parent="." unique_id=2054045676]
-stream = ExtResource("5_loo7a")
-volume_db = -0.5
-
-[node name="SelectClick" type="AudioStreamPlayer" parent="." unique_id=1806115131]
-stream = ExtResource("5_loo7a")
-pitch_scale = 0.5
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=678413240]
-libraries/ = SubResource("AnimationLibrary_7v4os")
-
-[node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
-position = Vector2(-367, 521)
-stream = ExtResource("6_if7li")
-volume_db = 12.458
-autoplay = true
 
 [connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
