@@ -11,12 +11,10 @@
 [ext_resource type="Script" uid="uid://bnx82atiuyf61" path="res://Assets/Scripts/settings_popup.gd" id="8_rrcx7"]
 [ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/button logic/video_button.gd" id="9_fh7cp"]
 [ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/button logic/controls_button.gd" id="10_8e205"]
-[ext_resource type="Script" uid="uid://hmx08rur3fdp" path="res://Scenes/back_button.gd" id="12_2x1g0"]
+[ext_resource type="Script" uid="uid://hmx08rur3fdp" path="res://Assets/Scripts/button logic/back_button.gd" id="12_2x1g0"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
-[ext_resource type="Script" uid="uid://du8ti7w4jq6td" path="res://Scenes/check_button.gd" id="13_riqfo"]
-[ext_resource type="FontFile" uid="uid://dpmvke2rwlduk" path="res://Assets/Fonts/Cardo,Cinzel/Cardo/Cardo-Regular.ttf" id="14_7v4os"]
-[ext_resource type="Script" uid="uid://cin16u4ayadf2" path="res://Scenes/black_screen.gd" id="15_7467j"]
+[ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Assets/Scripts/button logic/black_screen.gd" id="15_7467j"]
 [ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="15_pjscj"]
 
 [sub_resource type="Environment" id="Environment_7467j"]
@@ -35,35 +33,6 @@ adjustment_brightness = 1.5
 
 [sub_resource type="Theme" id="Theme_4rbuk"]
 FlowContainer/constants/v_separation = 117
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eiy7p"]
-bg_color = Color(0.4862745, 0.09411765, 0.23529412, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.8352941, 0.23529412, 0.41568628, 1)
-corner_radius_top_left = 14
-corner_radius_top_right = 14
-corner_radius_bottom_right = 14
-corner_radius_bottom_left = 14
-corner_detail = 15
-shadow_size = 10
-
-[sub_resource type="Theme" id="Theme_v8156"]
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_eiy7p")
-
-[sub_resource type="Theme" id="Theme_m7n2d"]
-default_base_scale = 0.21
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/colors/font_hover_color = Color(0.8666667, 0, 0, 1)
-Button/font_sizes/font_size = 49
-Button/fonts/font = ExtResource("14_7v4os")
-CheckButton/font_sizes/font_size = 49
-CheckButton/fonts/font = ExtResource("15_pjscj")
-OptionButton/font_sizes/font_size = 49
-OptionButton/fonts/font = ExtResource("14_7v4os")
-RichTextLabel/fonts/normal_font = ExtResource("14_7v4os")
 
 [sub_resource type="Shader" id="Shader_g4887"]
 code = "shader_type canvas_item;
@@ -162,6 +131,154 @@ shader_parameter/fog_direction = Vector2(1, 1)
 shader_parameter/scroll_noise_tex = true
 shader_parameter/noise_scroll_direction = Vector2(1, 0)
 
+[sub_resource type="Animation" id="Animation_2x1g0"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackScreen:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackScreen:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_riqfo"]
+resource_name = "fade_in"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.6, -31.968628, -1, 0, -27, 0, 0),
+"times": PackedFloat32Array(0, 1.0333333)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0, 2, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.0333333)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackScreen:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0, 0.96862745, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackScreen:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0, -0.16666667, 0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="Animation" id="Animation_yxkem"]
+resource_name = "fade_out"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlackScreen:color:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0, -82.96863, 3, 0, -2, 0, 0),
+"times": PackedFloat32Array(0, 2.4666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BlackScreen:color:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0, -29, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1.2666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlackScreen:color:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0, 0.96862745, -0.16666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("BlackScreen:color:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.16666667, -0.16666667, 0, 0),
+"times": PackedFloat32Array(0, 1)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7v4os"]
+_data = {
+&"RESET": SubResource("Animation_2x1g0"),
+&"fade_in": SubResource("Animation_riqfo"),
+&"fade_out": SubResource("Animation_yxkem")
+}
+
 [node name="Main Menu" type="Control" unique_id=1514424175]
 layout_mode = 3
 anchors_preset = 15
@@ -175,6 +292,7 @@ script = ExtResource("1_7467j")
 environment = SubResource("Environment_7467j")
 
 [node name="MenuItems" type="FlowContainer" parent="." unique_id=882890977]
+z_index = 1
 z_as_relative = false
 layout_mode = 1
 anchors_preset = 7
@@ -244,6 +362,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.365
@@ -260,7 +379,7 @@ pivot_offset = Vector2(150, 125)
 layout_direction = 1
 mouse_filter = 2
 mouse_behavior_recursive = 2
-theme = SubResource("Theme_v8156")
+theme = ExtResource("2_xim88")
 script = ExtResource("8_rrcx7")
 metadata/_edit_use_anchors_ = true
 
@@ -314,125 +433,143 @@ quit = NodePath("../../../MenuItems/Quit")
 
 [node name="VideoPopup" type="PanelContainer" parent="." unique_id=16329936]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.21239586
-anchor_top = 0.31300002
-anchor_right = 0.7856042
-anchor_bottom = 0.90900004
-offset_left = -0.8000488
-offset_top = 49.359985
-offset_right = -0.35998535
-offset_bottom = 49.312744
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.2703125
+anchor_top = 0.35703126
+anchor_right = 0.72987497
+anchor_bottom = 0.9230625
 pivot_offset = Vector2(150, 125)
+offset_transform_scale = Vector2(1.06, 1.06)
 layout_direction = 1
-mouse_filter = 2
+mouse_filter = 1
 mouse_behavior_recursive = 2
-theme = SubResource("Theme_v8156")
+theme = ExtResource("2_xim88")
 script = ExtResource("8_rrcx7")
 metadata/_edit_use_anchors_ = true
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VideoPopup" unique_id=2021875552]
+[node name="Video" type="Label" parent="VideoPopup" unique_id=1187608774]
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.3, 0)
-offset_transform_scale = Vector2(0.9, 0.9)
+offset_transform_position_ratio = Vector2(0, -3.135)
 offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "Video"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BoxContainer" type="VBoxContainer" parent="VideoPopup/ScrollContainer" unique_id=1428891213]
+[node name="Buttons" type="VBoxContainer" parent="VideoPopup" unique_id=1930816943]
+z_index = 1
 layout_mode = 2
-alignment = 1
+size_flags_stretch_ratio = 16.55
+mouse_filter = 2
 
-[node name="SettingsItems" type="FlowContainer" parent="VideoPopup/ScrollContainer/BoxContainer" unique_id=1410725955]
+[node name="Resolution" type="Button" parent="VideoPopup/Buttons" unique_id=1028054224]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.065, 2.03)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "Resolution:"
+flat = true
+alignment = 0
+
+[node name="Full Screen" type="Button" parent="VideoPopup/Buttons" unique_id=1873200441]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.065, 2.03)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "Full Screen:"
+flat = true
+alignment = 0
+
+[node name="V-Sync" type="Button" parent="VideoPopup/Buttons" unique_id=309559290]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0.065, 2.03)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "V-Sync:"
+flat = true
+alignment = 0
+
+[node name="States" type="VBoxContainer" parent="VideoPopup" unique_id=737391504]
+z_index = 1
+layout_mode = 2
+size_flags_stretch_ratio = 16.55
+mouse_filter = 2
+
+[node name="Resolution" type="Label" parent="VideoPopup/States" unique_id=1863467648]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.185, 2.355)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+theme_override_fonts/font = ExtResource("15_pjscj")
+theme_override_font_sizes/font_size = 49
+text = "resolution"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Full Screen" type="Label" parent="VideoPopup/States" unique_id=72890058]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.72, 2.355)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+theme_override_fonts/font = ExtResource("15_pjscj")
+theme_override_font_sizes/font_size = 49
+text = "on"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="V-Sync" type="Label" parent="VideoPopup/States" unique_id=2002673556]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.72, 2.355)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+theme_override_fonts/font = ExtResource("15_pjscj")
+theme_override_font_sizes/font_size = 49
+text = "on"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Back" type="Button" parent="VideoPopup" unique_id=214886495 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-size_flags_stretch_ratio = 4.9
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -15)
-theme = SubResource("Theme_4rbuk")
-alignment = 1
-last_wrap_alignment = 1
-
-[node name="MSAA" type="OptionButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=441712158]
-z_index = 1
-layout_mode = 2
-theme = ExtResource("2_xim88")
-flat = true
-alignment = 1
-selected = 0
-item_count = 4
-popup/item_0/text = "MSAA"
-popup/item_0/id = 0
-popup/item_0/separator = true
-popup/item_1/text = "2x"
-popup/item_1/id = 1
-popup/item_2/text = "4x"
-popup/item_2/id = 2
-popup/item_3/id = 3
-
-[node name="HDR" type="CheckButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1592347104]
-layout_mode = 2
-theme = ExtResource("2_xim88")
-text = "HDR"
-script = ExtResource("13_riqfo")
-
-[node name="V-Sync" type="CheckButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=561305494]
-layout_mode = 2
-theme = ExtResource("2_xim88")
-text = "V-Sync"
-script = ExtResource("13_riqfo")
-
-[node name="Resolution" type="OptionButton" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1594687254]
-layout_mode = 2
-theme = SubResource("Theme_m7n2d")
-item_count = 13
-popup/item_0/text = "Resolution"
-popup/item_0/id = 0
-popup/item_0/separator = true
-popup/item_1/text = "1920x1080"
-popup/item_1/id = 1
-popup/item_2/text = "2560x1440"
-popup/item_2/id = 2
-popup/item_3/text = "3840x2160"
-popup/item_3/id = 3
-popup/item_4/text = "1680x1050"
-popup/item_4/id = 4
-popup/item_5/text = "1920x1200"
-popup/item_5/id = 5
-popup/item_6/text = " 1024x768"
-popup/item_6/id = 6
-popup/item_7/text = "1280x960"
-popup/item_7/id = 7
-popup/item_8/text = "2560x1080"
-popup/item_8/id = 8
-popup/item_9/text = "3440x1440"
-popup/item_9/id = 9
-popup/item_10/text = "1280x720"
-popup/item_10/id = 10
-popup/item_11/text = "1600x900"
-popup/item_11/id = 11
-popup/item_12/text = "1366x768"
-popup/item_12/id = 12
-
-[node name="Back" type="Button" parent="VideoPopup/ScrollContainer/BoxContainer/SettingsItems" unique_id=1932140600 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
-layout_mode = 2
+offset_transform_position_ratio = Vector2(0, 3.96)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
 script = ExtResource("12_2x1g0")
-selectHoverSFX = NodePath("../../../../../SelectHover")
-selectClickSFX = NodePath("../../../../../SelectClick")
-menuItems = NodePath("../../../../../MenuItems")
-settingsPopup = NodePath("../../../../../SettingsPopup")
-videoPopup = NodePath("../../../..")
-controlsPopup = NodePath("../../../../../ControlsPopup")
-start = NodePath("../../../../../MenuItems/Start")
-settings = NodePath("../../../../../MenuItems/Settings")
-quit = NodePath("../../../../../MenuItems/Quit")
+selectHoverSFX = NodePath("../../SelectHover")
+selectClickSFX = NodePath("../../SelectClick")
+menuItems = NodePath("../../MenuItems")
+settingsPopup = NodePath("../../SettingsPopup")
+videoPopup = NodePath("..")
+controlsPopup = NodePath("../../ControlsPopup")
+start = NodePath("../../MenuItems/Start")
+settings = NodePath("../../MenuItems/Settings")
+quit = NodePath("../../MenuItems/Quit")
 
 [node name="Mainmenu" type="AudioStreamPlayer2D" parent="." unique_id=767126488]
 position = Vector2(-367, 521)
@@ -441,6 +578,7 @@ autoplay = true
 
 [node name="ControlsPopup" type="PanelContainer" parent="." unique_id=230861360]
 visible = false
+z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.365
@@ -455,16 +593,19 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
 layout_direction = 1
-mouse_filter = 2
+mouse_filter = 1
 mouse_behavior_recursive = 2
-theme = SubResource("Theme_v8156")
+theme = ExtResource("2_xim88")
 script = ExtResource("8_rrcx7")
 metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="ControlsPopup" unique_id=392466930]
 layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 5
+size_flags_stretch_ratio = 14.19
 offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0.05, 0)
+offset_transform_position_ratio = Vector2(0.02, 0)
 offset_transform_scale = Vector2(0.9, 0.9)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
@@ -482,34 +623,49 @@ horizontal_alignment = 1
 layout_mode = 2
 theme = ExtResource("2_xim88")
 theme_override_fonts/font = ExtResource("15_pjscj")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 35
 text = "Click on each action to rebind."
 
 [node name="Jump" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1099392725]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.085)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Jump"
 
 [node name="Dash" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=616129137]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.085)
+offset_transform_visual_only = false
 text = "Dash"
 
 [node name="Attack" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=1755098980]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.085)
+offset_transform_visual_only = false
 text = "Attack"
 
 [node name="Move Left" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=344279726]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.085)
+offset_transform_visual_only = false
 text = "Move Left"
 
 [node name="Move Right" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=886131579]
 layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 1.085)
+offset_transform_visual_only = false
 text = "Move Right"
 
 [node name="Back" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=790407864 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
 offset_transform_enabled = true
-offset_transform_position_ratio = Vector2(0, 2)
+offset_transform_position_ratio = Vector2(0, 1.77)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Back
@@ -556,6 +712,16 @@ offset_bottom = 1280.0
 mouse_filter = 2
 color = Color(0.14044744, 0.14044747, 0.14044738, 1)
 
+[node name="Fog2" type="ColorRect" parent="." unique_id=1294545132]
+z_index = -5
+material = SubResource("ShaderMaterial_riqfo")
+layout_mode = 0
+offset_left = 2833.0
+offset_right = 5560.0
+offset_bottom = 1280.0
+mouse_filter = 2
+color = Color(0.14044744, 0.14044747, 0.14044738, 1)
+
 [node name="Background" type="ColorRect" parent="." unique_id=222903332]
 layout_mode = 1
 anchors_preset = 15
@@ -568,7 +734,6 @@ color = Color(0, 0, 0, 0.5921569)
 metadata/_edit_use_anchors_ = true
 
 [node name="BlackScreen" type="ColorRect" parent="." unique_id=2097454917]
-visible = false
 modulate = Color(0.006241691, 0.0062416834, 0, 1)
 z_index = 309
 layout_mode = 1
@@ -578,13 +743,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.9691369, 0.9691369, 0.9691368, 1)
+color = Color(0.96862745, 0.96862745, 0.96862745, 0)
 script = ExtResource("15_7467j")
 metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="BlackScreen" unique_id=53320831]
-one_shot = true
-autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=550578248]
 position = Vector2(950, 645)
@@ -601,6 +762,9 @@ volume_db = -0.5
 stream = ExtResource("5_loo7a")
 pitch_scale = 0.5
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=678413240]
+libraries/ = SubResource("AnimationLibrary_7v4os")
+
 [connection signal="mouse_entered" from="MenuItems/Start" to="MenuItems/Start" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Start" to="MenuItems/Start" method="_on_pressed"]
 [connection signal="mouse_entered" from="MenuItems/Settings" to="." method="_on_settings_mouse_entered"]
@@ -615,7 +779,7 @@ pitch_scale = 0.5
 [connection signal="pressed" from="SettingsPopup/SettingsItems/Controls" to="SettingsPopup/SettingsItems/Controls" method="_on_pressed"]
 [connection signal="mouse_entered" from="SettingsPopup/SettingsItems/Back" to="SettingsPopup/SettingsItems/Back" method="_on_mouse_entered"]
 [connection signal="pressed" from="SettingsPopup/SettingsItems/Back" to="SettingsPopup/SettingsItems/Back" method="_on_pressed"]
-[connection signal="mouse_entered" from="VideoPopup/ScrollContainer/BoxContainer/SettingsItems/Back" to="VideoPopup/ScrollContainer/BoxContainer/SettingsItems/Back" method="_on_mouse_entered"]
-[connection signal="pressed" from="VideoPopup/ScrollContainer/BoxContainer/SettingsItems/Back" to="VideoPopup/ScrollContainer/BoxContainer/SettingsItems/Back" method="_on_pressed"]
+[connection signal="mouse_entered" from="VideoPopup/Back" to="VideoPopup/Back" method="_on_mouse_entered"]
+[connection signal="pressed" from="VideoPopup/Back" to="VideoPopup/Back" method="_on_pressed"]
 [connection signal="mouse_entered" from="ControlsPopup/ScrollContainer/BoxContainer/Back" to="ControlsPopup/ScrollContainer/BoxContainer/Back" method="_on_mouse_entered"]
 [connection signal="pressed" from="ControlsPopup/ScrollContainer/BoxContainer/Back" to="ControlsPopup/ScrollContainer/BoxContainer/Back" method="_on_pressed"]

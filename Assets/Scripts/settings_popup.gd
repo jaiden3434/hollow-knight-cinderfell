@@ -6,4 +6,3 @@ extends PanelContainer
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_back"):
 		$".".visible = false
-		$SelectHover.play()

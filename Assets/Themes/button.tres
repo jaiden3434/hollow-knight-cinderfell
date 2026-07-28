@@ -4,16 +4,39 @@
 [ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="2_4rbuk"]
 [ext_resource type="FontFile" uid="uid://d1j8xyb7mavw7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-SemiBold.ttf" id="3_7tl46"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tl46"]
+bg_color = Color(0.080783345, 0.080783345, 0.0807833, 0.34509805)
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_top = 5.0
+expand_margin_right = 5.0
+expand_margin_bottom = 5.0
+shadow_color = Color(0, 0, 0, 0.2627451)
+shadow_size = 25
+
 [resource]
 default_base_scale = 0.21
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.8666667, 0, 0, 1)
+Button/constants/align_to_largest_stylebox = 52
+Button/constants/icon_max_width = 0
+Button/constants/line_spacing = 9
 Button/font_sizes/font_size = 49
 Button/fonts/font = ExtResource("1_174f8")
 CheckButton/font_sizes/font_size = 49
 CheckButton/fonts/font = ExtResource("2_4rbuk")
 Label/font_sizes/font_size = 64
 Label/fonts/font = ExtResource("3_7tl46")
+OptionButton/constants/arrow_margin = -20
+OptionButton/constants/h_separation = 5
+OptionButton/constants/icon_max_width = 0
+OptionButton/constants/line_spacing = 4
 OptionButton/font_sizes/font_size = 49
 OptionButton/fonts/font = ExtResource("1_174f8")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_7tl46")
 RichTextLabel/fonts/normal_font = ExtResource("1_174f8")
