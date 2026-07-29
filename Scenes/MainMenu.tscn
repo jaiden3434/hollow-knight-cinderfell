@@ -12,11 +12,14 @@
 [ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/button logic/video_button.gd" id="9_fh7cp"]
 [ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/button logic/controls_button.gd" id="10_8e205"]
 [ext_resource type="Script" uid="uid://ccxti6vly0kq1" path="res://Assets/Scripts/audio.gd" id="10_riqfo"]
-[ext_resource type="Script" uid="uid://hmx08rur3fdp" path="res://Assets/Scripts/button logic/back_button.gd" id="12_2x1g0"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
+[ext_resource type="Script" uid="uid://djw35483j0q70" path="res://Scenes/settings_back.gd" id="14_pjscj"]
 [ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Assets/Scripts/button logic/black_screen.gd" id="15_7467j"]
 [ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="15_pjscj"]
+[ext_resource type="Script" uid="uid://1s3sgnxob16i" path="res://Scenes/video_back.gd" id="16_m7n2d"]
+[ext_resource type="Script" uid="uid://dma2bs27704b3" path="res://Scenes/controls_back.gd" id="18_65hh5"]
+[ext_resource type="Script" uid="uid://ctapwywmfewtb" path="res://Scenes/audio_back.gd" id="19_6byu3"]
 
 [sub_resource type="Animation" id="Animation_2x1g0"]
 length = 0.001
@@ -63,6 +66,42 @@ tracks/3/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuItems:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SettingsPopup:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SettingsPopup:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(700, 500)]
 }
 
 [sub_resource type="Animation" id="Animation_riqfo"]
@@ -159,11 +198,52 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 1)
 }
 
+[sub_resource type="Animation" id="Animation_pjscj"]
+resource_name = "settings_fade"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuItems:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(80, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SettingsPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(20, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SettingsPopup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(10, 1),
+"update": 0,
+"values": [Vector2(700, 500), Vector2(700, 450)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7v4os"]
 _data = {
 &"RESET": SubResource("Animation_2x1g0"),
 &"fade_in": SubResource("Animation_riqfo"),
-&"fade_out": SubResource("Animation_yxkem")
+&"fade_out": SubResource("Animation_yxkem"),
+&"settings_fade": SubResource("Animation_pjscj")
 }
 
 [sub_resource type="Environment" id="Environment_7467j"]
@@ -412,7 +492,7 @@ selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
-visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -421,9 +501,9 @@ anchor_top = 0.35200003
 anchor_right = 0.633
 anchor_bottom = 0.952
 offset_left = -0.8000488
-offset_top = -0.5600281
+offset_top = 49.439972
 offset_right = -0.35998535
-offset_bottom = -5.727295
+offset_bottom = 44.274414
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -495,7 +575,7 @@ script = ExtResource("10_riqfo")
 selectHoverSFX = NodePath("../../../SelectHover")
 selectClickSFX = NodePath("../../../SelectClick")
 
-[node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -506,9 +586,7 @@ text = "Back
 "
 flat = true
 icon_alignment = 1
-script = ExtResource("12_2x1g0")
-selectHoverSFX = NodePath("../../../SelectHover")
-selectClickSFX = NodePath("../../../SelectClick")
+script = ExtResource("14_pjscj")
 
 [node name="VideoPopup" type="PanelContainer" parent="." unique_id=16329936]
 visible = false
@@ -550,7 +628,7 @@ layout_mode = 2
 [node name="FullScreen" type="Label" parent="VideoPopup" unique_id=662012576]
 layout_mode = 2
 
-[node name="Back" type="Button" parent="VideoPopup" unique_id=214886495 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Back" type="Button" parent="VideoPopup" unique_id=214886495]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -561,9 +639,7 @@ theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
-script = ExtResource("12_2x1g0")
-selectHoverSFX = NodePath("../../SelectHover")
-selectClickSFX = NodePath("../../SelectClick")
+script = ExtResource("16_m7n2d")
 
 [node name="ControlsPopup" type="PanelContainer" parent="." unique_id=230861360]
 visible = false
@@ -650,7 +726,7 @@ offset_transform_position_ratio = Vector2(0, 1.085)
 offset_transform_visual_only = false
 text = "Move Right"
 
-[node name="Back" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=790407864 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Back" type="Button" parent="ControlsPopup/ScrollContainer/BoxContainer" unique_id=790407864]
 layout_mode = 2
 size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0, 1.77)
@@ -659,9 +735,7 @@ theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
-script = ExtResource("12_2x1g0")
-selectHoverSFX = NodePath("../../../../SelectHover")
-selectClickSFX = NodePath("../../../../SelectClick")
+script = ExtResource("18_65hh5")
 
 [node name="AudioPopup" type="PanelContainer" parent="." unique_id=908912981]
 visible = false
@@ -763,7 +837,7 @@ offset_transform_scale = Vector2(2, 2)
 offset_transform_visual_only = false
 ticks_on_borders = true
 
-[node name="Back" type="Button" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=600199268 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Back" type="Button" parent="AudioPopup/ScrollContainer/BoxContainer" unique_id=600199268]
 layout_mode = 2
 size_flags_vertical = 3
 offset_transform_position_ratio = Vector2(0.585, 4.93)
@@ -772,9 +846,7 @@ theme = ExtResource("2_xim88")
 text = "Back
 "
 flat = true
-script = ExtResource("12_2x1g0")
-selectHoverSFX = NodePath("../../../../SelectHover")
-selectClickSFX = NodePath("../../../../SelectClick")
+script = ExtResource("19_6byu3")
 
 [node name="Fog" type="ColorRect" parent="." unique_id=1856413664]
 z_index = -5
