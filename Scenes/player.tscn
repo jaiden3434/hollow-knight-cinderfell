@@ -48,6 +48,9 @@ func _physics_process(delta: float) -> void:
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
 size = Vector2(191, 183.5)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5a7ea"]
+light_mode = 1
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1058156551]
 scale = Vector2(1, 2)
 slide_on_ceiling = false
@@ -73,6 +76,7 @@ position = Vector2(65.5, 65)
 shape = SubResource("RectangleShape2D_v8156")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=908327480]
+material = SubResource("CanvasItemMaterial_5a7ea")
 offset_left = -27.0
 offset_top = -28.0
 offset_right = 155.0
