@@ -181,7 +181,7 @@ adjustment_enabled = true
 adjustment_brightness = 1.5
 
 [sub_resource type="Theme" id="Theme_4rbuk"]
-FlowContainer/constants/v_separation = 117
+FlowContainer/constants/v_separation = 66
 
 [sub_resource type="Shader" id="Shader_g4887"]
 code = "shader_type canvas_item;
@@ -370,7 +370,7 @@ grow_vertical = 0
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -15)
 mouse_filter = 2
-theme = SubResource("Theme_4rbuk")
+theme = ExtResource("2_xim88")
 alignment = 1
 last_wrap_alignment = 2
 metadata/_edit_use_anchors_ = true
@@ -440,13 +440,15 @@ size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 offset_transform_enabled = true
 theme = SubResource("Theme_4rbuk")
+theme_override_constants/v_separation = 39
 alignment = 1
 
 [node name="Settings" type="Label" parent="SettingsPopup/SettingsItems" unique_id=1246539775]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-offset_transform_position_ratio = Vector2(0, -3.135)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.59)
 offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "SETTINGS"
@@ -456,6 +458,9 @@ vertical_alignment = 1
 [node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.845)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Video
 "
@@ -467,6 +472,9 @@ selectClickSFX = NodePath("../../../SelectClick")
 [node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.845)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Controls
 "
@@ -478,6 +486,9 @@ selectClickSFX = NodePath("../../../SelectClick")
 [node name="Audio" type="Button" parent="SettingsPopup/SettingsItems" unique_id=322345623 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 0.845)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "   Audio   "
 flat = true
@@ -488,6 +499,9 @@ selectClickSFX = NodePath("../../../SelectClick")
 [node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX", "menuItems", "settingsPopup", "videoPopup", "controlsPopup", "start", "settings", "quit")]
 layout_mode = 2
 size_flags_horizontal = 3
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, 2.125)
+offset_transform_visual_only = false
 theme = ExtResource("2_xim88")
 text = "Back
 "
