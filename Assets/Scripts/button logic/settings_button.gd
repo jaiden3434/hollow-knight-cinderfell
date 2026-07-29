@@ -6,6 +6,7 @@ extends Button
 
 #Plays mouse hover sound effect.
 func _on_mouse_entered() -> void:
+	selectHoverSFX.pitch_scale = randf_range(0.5, 1.0)
 	selectHoverSFX.play()
 
 #Plays mouse button press sound effect.
