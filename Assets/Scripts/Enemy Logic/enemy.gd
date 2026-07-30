@@ -1,8 +1,7 @@
-class_name State extends Node
+@icon("uid://cy6jdmqfkf064")
+class_name Enemy extends Node
 
-signal switch_state(state: State)
-
-
+signal spawn_enemy(enemy: Enemy)
 
 func enter_state() -> void:
 	pass

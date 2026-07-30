@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bqxvnxkp12l3p" path="res://Assets/Textures/hhhh.PNG" id="1_5g0qo"]
 [ext_resource type="PackedScene" uid="uid://cyq2o104ctqol" path="res://Scenes/room_door_vertical.tscn" id="2_md2xb"]
 [ext_resource type="Script" uid="uid://bkv1h5bqinwmw" path="res://Scenes/room_door_vertical.gd" id="3_yntpj"]
+[ext_resource type="Script" uid="uid://yy0tb4qv5su" path="res://Assets/Scripts/Enemy Logic/enemy_manager.gd" id="4_5stun"]
+[ext_resource type="Script" uid="uid://08du3gcfyeu5" path="res://Assets/Scripts/Enemy Logic/test_enemy.gd" id="5_5stun"]
+[ext_resource type="PackedScene" uid="uid://doo45yadqp2kf" path="res://Scenes/player.tscn" id="6_m53q4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_md2xb"]
 texture = ExtResource("1_5g0qo")
@@ -141,6 +144,16 @@ script = ExtResource("3_yntpj")
 [node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="TileMapLayer/RoomDoor/RoomDoor" unique_id=572512539]
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="TileMapLayer/RoomDoor" unique_id=1354546718]
+
+[node name="EnemyManager" type="Node" parent="." unique_id=473697795 node_paths=PackedStringArray("active_enemy")]
+script = ExtResource("4_5stun")
+active_enemy = NodePath("")
+metadata/_custom_type_script = "uid://yy0tb4qv5su"
+
+[node name="Enemy" type="Node" parent="EnemyManager" unique_id=1554242710]
+script = ExtResource("5_5stun")
+enemyScene = ExtResource("6_m53q4")
+metadata/_custom_type_script = "uid://83o7nnjn3g1c"
 
 [connection signal="screen_entered" from="TileMapLayer/RoomDoor/RoomDoor/VisibleOnScreenNotifier2D2" to="TileMapLayer/RoomDoor/RoomDoor" method="_on_visible_on_screen_notifier_2d_2_screen_entered"]
 [connection signal="screen_exited" from="TileMapLayer/RoomDoor/RoomDoor/VisibleOnScreenNotifier2D2" to="TileMapLayer/RoomDoor/RoomDoor" method="_on_visible_on_screen_notifier_2d_2_screen_exited"]

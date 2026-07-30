@@ -7,3 +7,4 @@ script = ExtResource("1_r36ar")
 playerSpeed = 1000.0
 jumpHeight = 3000.0
 fallMultiplier = 1.05
+playerDirection = 0

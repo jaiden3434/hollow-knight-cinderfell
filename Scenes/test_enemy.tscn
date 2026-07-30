@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dm6fnqcven31u"]
+
+[node name="test_enemy" type="Node2D" unique_id=505201484]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1041924360]
+offset_right = 40.0
+offset_bottom = 40.0

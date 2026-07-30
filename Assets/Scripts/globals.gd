@@ -26,6 +26,8 @@ extends Node
 @export_subgroup("Stats")
 ## The speed at which the player moves, not be confused with how fast jump or dash, as that is seperate.
 @export var playerSpeed: float = 500.0
+## How much damage the player inflicts on other enemies.
+@export var attackDamage: float = 2.0
 ## The speed at which the player dashes.
 @export var dashSpeed: float  = 700.0
 ## The height at which the player jumps.
@@ -34,5 +36,6 @@ extends Node
 @export var fallMultiplier: float = 1.15
 ## Direction player is moving. 1 being left, -1 being right
 @export var playerDirection: int = 1
-
+## How much attacking alone moves the player backwards, not to be confused with attack knockback.
+@export var attackRecoil: float = 15.0
 #------------------------------
