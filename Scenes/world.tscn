@@ -54,5 +54,6 @@ offset_right = 28342.0
 offset_bottom = 9887.5
 
 [node name="room_0" parent="." unique_id=1611087881 instance=ExtResource("1_f3sb7")]
+position = Vector2(8, 0)
 
 [editable path="CharacterBody2D"]

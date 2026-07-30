@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bkpcxxmxp1lnw" path="res://Assets/Scripts/state_machine/jump.gd" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://d3ngfe0k5k7au" path="res://Assets/Scripts/state_machine/idle.gd" id="6_3smsa"]
 [ext_resource type="Script" uid="uid://ccmd00wx3rafe" path="res://Assets/Scripts/attack.gd" id="6_x3wgy"]
+[ext_resource type="Script" uid="uid://do1tylimx3vk3" path="res://Assets/Scripts/dash.gd" id="7_3smsa"]
+[ext_resource type="Script" uid="uid://dd8qxvcki58tc" path="res://Assets/Scripts/state_machine/air_dash.gd" id="8_8erm5"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]
 script/source = "extends CharacterBody2D
@@ -31,21 +33,7 @@ func _physics_process(delta: float) -> void:
 		
 		
 	# Horizontal movement
-	var axis = Input.get_axis(\"left\", \"right\")
-	
-	if Globals.canMove:
-		if axis:
-			if Globals.dyanmicCamera == true:
-				# NOTE: Theres prolly a far better way to do ts, but as i said before, it makes the most sense to me. Meant to make the camera play nice if we are approaching a camera bound
-				Globals.playerDirection = axis
-			else:
-				Globals.playerDirection = 0
-			velocity.x = Globals.playerSpeed * axis
-		else:
-			velocity.x = 0.0
-			Globals.playerDirection = 0
-	
-		
+
 	# Camera smoothening
 	if velocity.y < 0.0:
 		camera_2d.offset.y = lerp(camera_2d.offset.y, -900.0, 0.03)
@@ -144,27 +132,43 @@ script = ExtResource("3_vgqql")
 initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://r3w8hthsa0s7"
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("player", "jump", "idle")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("player", "jump", "idle", "dash", "air_dash")]
 script = ExtResource("6_3smsa")
 player = NodePath("../..")
 jump = NodePath("../Jump")
 idle = NodePath(".")
+dash = NodePath("../Dash")
+air_dash = NodePath("../Air Dash")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264 node_paths=PackedStringArray("player", "jump", "idle")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264 node_paths=PackedStringArray("player", "jump", "idle", "air_dash")]
 script = ExtResource("5_3smsa")
 player = NodePath("../..")
 jump = NodePath(".")
 idle = NodePath("../Idle")
+air_dash = NodePath("../Air Dash")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=164980813]
 script = ExtResource("6_x3wgy")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
+[node name="Dash" type="Node" parent="StateMachine" unique_id=777622867 node_paths=PackedStringArray("player", "jump", "idle")]
+script = ExtResource("7_3smsa")
+player = NodePath("../..")
+jump = NodePath("../Jump")
+idle = NodePath("../Idle")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Air Dash" type="Node" parent="StateMachine" unique_id=1345669972 node_paths=PackedStringArray("player", "idle")]
+script = ExtResource("8_8erm5")
+player = NodePath("../..")
+idle = NodePath("../Idle")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
 [node name="Coyote Time" type="Timer" parent="." unique_id=2006108679]
 process_callback = 0
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [connection signal="body_entered" from="attack hitbox" to="StateMachine/Attack" method="_on_attack_hitbox_body_entered"]
