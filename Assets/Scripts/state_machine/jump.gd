@@ -8,7 +8,7 @@ extends State
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 
 func enter_state() -> void:
-		player.velocity.y = -Globals.jumpHeight
+	player.velocity.y = -Globals.jumpHeight
 
 func update(_delta: float) -> void:
 		# Offsets camera to allow for maxiumium viewability

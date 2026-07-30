@@ -14,6 +14,7 @@ extends Node
 # These can be configured at runtime to dictate behaviors.
 ## Sets whether player can jump
 @export var canJump: bool = true
+var hasCoyoteJumped : bool = false
 ## Sets whether player can dash
 @export var canDash: bool = true
 ## Sets whether player can move

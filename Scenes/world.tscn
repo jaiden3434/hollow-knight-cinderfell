@@ -27,7 +27,7 @@ shader_parameter/vignette_color = Color(0, 0, 0, 1)
 
 [node name="CharacterBody2D" parent="." unique_id=1058156551 instance=ExtResource("2_tlwt5")]
 z_index = -1
-position = Vector2(4048, 0)
+position = Vector2(1727, 246)
 
 [node name="PointLight2D" type="PointLight2D" parent="CharacterBody2D" unique_id=63242273]
 position = Vector2(78, 72)

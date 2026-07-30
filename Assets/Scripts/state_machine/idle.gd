@@ -14,11 +14,14 @@ func enter_state() -> void:
 	pass
 
 func update(_delta: float) -> void:
+	if player.is_on_floor():
+		Globals.hasCoyoteJumped = false
 	
-	if !player.is_on_floor() and coyote_time.is_stopped():
+	# Starts coyote timer when player is off the floor given its not already activated
+	if !player.is_on_floor() and !Globals.hasCoyoteJumped and coyote_time.is_stopped():
 		coyote_time.start()
-	# Regular Jump
-	if Input.is_action_pressed("y_axis") and Globals.canJump and player.is_on_floor():
-		switch_state.emit(jump)
-	if Input.is_action_pressed("y_axis") and Globals.canJump and  !coyote_time.is_stopped():
+		Globals.hasCoyoteJumped = true
+		
+		
+	if Input.is_action_pressed("y_axis") and Globals.canJump and (player.is_on_floor() or !coyote_time.is_stopped()):
 		switch_state.emit(jump)

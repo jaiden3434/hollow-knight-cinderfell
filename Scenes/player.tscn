@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+		pass
 	if velocity.y > 0.0:
 		velocity.y = lerp(velocity.y, velocity.y * Globals.fallMultiplier, 1.5)
 		# If we are falling, fall faster than normal
@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y < 0.0:
 		camera_2d.offset.y = lerp(camera_2d.offset.y, -900.0, 0.03)
 	elif velocity.y >= 0.0:
-		camera_2d.offset.y = lerp(camera_2d.offset.y, -500.0, 0.03) 
+		camera_2d.offset.y = lerp(camera_2d.offset.y, 0.0, 0.03) 
 	
 	if Globals.dyanmicCamera:
 		if Globals.playerDirection == -1:
@@ -62,7 +62,7 @@ func _physics_process(delta: float) -> void:
 	
 		
 		
-
+	velocity.y = clampf(velocity.y, -4000, 5000)
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	move_and_slide()
@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 size = Vector2(161, 163)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82ftl"]
-size = Vector2(294, 150)
+size = Vector2(236.125, 150)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5a7ea"]
 light_mode = 1
@@ -103,9 +103,11 @@ position = Vector2(65.5, 65)
 shape = SubResource("RectangleShape2D_v8156")
 
 [node name="attack hitbox" type="Area2D" parent="." unique_id=288409121]
+visible = false
 position = Vector2(305.25, 65)
 
 [node name="attack hitbox" type="CollisionShape2D" parent="attack hitbox" unique_id=1522714129]
+position = Vector2(34.75, 0)
 shape = SubResource("RectangleShape2D_82ftl")
 
 [node name="Attack Hitbox right" type="ColorRect" parent="attack hitbox" unique_id=174319492]
@@ -116,10 +118,11 @@ offset_bottom = 70.5
 metadata/_edit_use_anchors_ = true
 
 [node name="attack hitbox2" type="Area2D" parent="." unique_id=1079089537]
+visible = false
 position = Vector2(-178, 65)
 
 [node name="attack hitbox" type="CollisionShape2D" parent="attack hitbox2" unique_id=944946906]
-position = Vector2(483.25, 0)
+position = Vector2(-31.0625, 0)
 shape = SubResource("RectangleShape2D_82ftl")
 
 [node name="Attack Hitbox left" type="ColorRect" parent="attack hitbox2" unique_id=1137485825]
@@ -136,8 +139,9 @@ offset_right = 155.0
 offset_bottom = 154.0
 texture = ExtResource("2_i3pqv")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1950604772]
+[node name="StateMachine" type="Node" parent="." unique_id=1950604772 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_vgqql")
+initial_state = NodePath("Idle")
 metadata/_custom_type_script = "uid://r3w8hthsa0s7"
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1516312592 node_paths=PackedStringArray("player", "jump", "idle")]
@@ -160,7 +164,7 @@ metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Coyote Time" type="Timer" parent="." unique_id=2006108679]
 process_callback = 0
-wait_time = 0.319
+wait_time = 0.2
 one_shot = true
 
 [connection signal="body_entered" from="attack hitbox" to="StateMachine/Attack" method="_on_attack_hitbox_body_entered"]
