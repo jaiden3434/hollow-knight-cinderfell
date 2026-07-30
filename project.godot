@@ -101,7 +101,7 @@ down={
 [physics]
 
 3d/physics_engine="Jolt Physics"
-2d/default_gravity=3243.255
+2d/default_gravity=5000.0
 
 [rendering]
 

@@ -4,6 +4,6 @@
 
 [node name="Globals config" type="Node" unique_id=1789608567]
 script = ExtResource("1_r36ar")
-playerSpeed = 900.0
-jumpHeight = 2400.0
+playerSpeed = 1000.0
+jumpHeight = 3000.0
 fallMultiplier = 1.05

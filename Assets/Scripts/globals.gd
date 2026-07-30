@@ -30,5 +30,7 @@ extends Node
 @export var jumpHeight: float = 700.0
 ## Dictates how much faster the player falls then rises
 @export var fallMultiplier: float = 1.15
+## Direction player is moving. 1 being left, -1 being right
+@export var playerDirection: int = 1
 
 #------------------------------
