@@ -15,13 +15,6 @@ func enter_state() -> void:
 
 func update(_delta: float) -> void:
 	
-
-		
-	
-	if player.is_on_floor():
-		camera_2d.offset.y = lerp(camera_2d.offset.y, -800.0, 0.0005)
-	elif player.velocity.y > 0.0:
-		camera_2d.offset.y = lerp(camera_2d.offset.y, 800.0, 0.0005)
 	if !player.is_on_floor() and coyote_time.is_stopped():
 		coyote_time.start()
 	# Regular Jump

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cyq2o104ctqol"]
+
+[ext_resource type="Texture2D" uid="uid://l7qsts1vetvv" path="res://Assets/Textures/Fog.png" id="1_74p15"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v8156"]
+particle_flag_disable_z = true
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = -2.2351742e-05
+radial_velocity_max = 198.41997
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = 99.99999
+scale_over_velocity_max = 60.09
+hue_variation_min = -2.2351742e-08
+hue_variation_max = 0.13999997
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
+size = Vector2(258, 790)
+
+[node name="RoomDoor_Vertical" type="Node2D" unique_id=1986846377]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1911374584]
+visible = false
+modulate = Color(1.504086e-09, 0.0442444, 0.04426045, 1)
+scale = Vector2(8.862125, 17.529177)
+amount = 44
+texture = ExtResource("1_74p15")
+lifetime = 4.68
+speed_scale = 2.8
+randomness = 0.96
+process_material = SubResource("ParticleProcessMaterial_v8156")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1617196344]
+offset_left = -130.0
+offset_top = -392.0
+offset_right = 135.0
+offset_bottom = 389.0
+color = Color(0, 0, 0, 1)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=903882220]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=234512710]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_v8156")

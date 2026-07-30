@@ -14,12 +14,12 @@
 [ext_resource type="Script" uid="uid://ccxti6vly0kq1" path="res://Assets/Scripts/audio.gd" id="10_riqfo"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
-[ext_resource type="Script" uid="uid://djw35483j0q70" path="res://Scenes/settings_back.gd" id="14_pjscj"]
+[ext_resource type="Script" uid="uid://djw35483j0q70" path="res://Assets/Scripts/state_machine/settings_back.gd" id="14_pjscj"]
 [ext_resource type="Script" uid="uid://rkfg0niw663o" path="res://Assets/Scripts/button logic/black_screen.gd" id="15_7467j"]
 [ext_resource type="FontFile" uid="uid://bgnlod5bexrn7" path="res://Assets/Fonts/Cardo,Cinzel/Cinzel/static/Cinzel-Regular.ttf" id="15_pjscj"]
-[ext_resource type="Script" uid="uid://1s3sgnxob16i" path="res://Scenes/video_back.gd" id="16_m7n2d"]
-[ext_resource type="Script" uid="uid://dma2bs27704b3" path="res://Scenes/controls_back.gd" id="18_65hh5"]
-[ext_resource type="Script" uid="uid://ctapwywmfewtb" path="res://Scenes/audio_back.gd" id="19_6byu3"]
+[ext_resource type="Script" uid="uid://1s3sgnxob16i" path="res://Assets/Scripts/state_machine/video_back.gd" id="16_m7n2d"]
+[ext_resource type="Script" uid="uid://dma2bs27704b3" path="res://Assets/Scripts/state_machine/controls_back.gd" id="18_65hh5"]
+[ext_resource type="Script" uid="uid://ctapwywmfewtb" path="res://Assets/Scripts/state_machine/audio_back.gd" id="19_6byu3"]
 
 [sub_resource type="Animation" id="Animation_2x1g0"]
 length = 0.001

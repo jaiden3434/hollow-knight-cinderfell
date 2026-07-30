@@ -13,6 +13,9 @@ script/source = "extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+@onready var visible_on_screen_notifier_2d_2: VisibleOnScreenNotifier2D = $TileMapLayer/RoomDoor/RoomDoor/VisibleOnScreenNotifier2D2
+@onready var visible_on_screen_notifier_2d: VisibleOnScreenNotifier2D = $TileMapLayer/RoomDoor/VisibleOnScreenNotifier2D
+
 var has_landed : bool = false
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -31,8 +34,12 @@ func _physics_process(delta: float) -> void:
 	
 	if Globals.canMove:
 		if axis:
-			Globals.playerDirection = axis
-			velocity.x = Globals.playerSpeed	 * axis
+			if Globals.dyanmicCamera == true:
+				# NOTE: Theres prolly a far better way to do ts, but as i said before, it makes the most sense to me. Meant to make the camera play nice if we are approaching a camera bound
+				Globals.playerDirection = axis
+			else:
+				Globals.playerDirection = 0
+			velocity.x = Globals.playerSpeed * axis
 		else:
 			velocity.x = 0.0
 			Globals.playerDirection = 0
@@ -44,12 +51,13 @@ func _physics_process(delta: float) -> void:
 	elif velocity.y >= 0.0:
 		camera_2d.offset.y = lerp(camera_2d.offset.y, -1000.0, 0.03) 
 	
-	if Globals.playerDirection == -1:
-		camera_2d.offset.x = lerp(camera_2d.offset.x, -1500.0, 0.03)
-	elif Globals.playerDirection == 1:
-		camera_2d.offset.x = lerp(camera_2d.offset.x, 1500.0, 0.03) 
-	elif Globals.playerDirection == 0:
-		camera_2d.offset.x = lerp(camera_2d.offset.x, 0.0, 0.03) 
+	if Globals.dyanmicCamera:
+		if Globals.playerDirection == -1:
+			camera_2d.offset.x = lerp(camera_2d.offset.x, -1500.0, 0.03)
+		elif Globals.playerDirection == 1:
+			camera_2d.offset.x = lerp(camera_2d.offset.x, 1500.0, 0.03) 
+	if Globals.playerDirection == 0:
+			camera_2d.offset.x = lerp(camera_2d.offset.x, 0.0, 0.03) 
 	
 		
 		
@@ -73,7 +81,8 @@ script = SubResource("GDScript_fkybt")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=860272574]
 zoom = Vector2(0.3, 0.3)
 process_callback = 0
-limit_enabled = false
+limit_left = 0
+limit_right = 9000
 position_smoothing_enabled = true
 position_smoothing_speed = 4.5
 drag_left_margin = 0.7

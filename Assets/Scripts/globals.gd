@@ -20,6 +20,8 @@ extends Node
 @export var canMove: bool = true
 ## Sets whether player can attack
 @export var canAttack: bool = true
+## Disables dynamic horizontal camera movement. 
+@export var dyanmicCamera: bool = true
 
 @export_subgroup("Stats")
 ## The speed at which the player moves, not be confused with how fast jump or dash, as that is seperate.
