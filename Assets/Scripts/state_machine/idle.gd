@@ -31,7 +31,7 @@ func update(_delta: float) -> void:
 		if axis:
 			if Input.is_action_pressed("dash"):
 				Globals.isRunning = true
-				player.velocity.x = lerp(player.velocity.x, (Globals.playerSpeed + Globals.dashSpeed) * axis, 0.05)
+				player.velocity.x = lerp(player.velocity.x, (Globals.playerSpeed + Globals.dashSpeed) * axis, 0.005)
 			else: 
 				player.velocity.x = Globals.playerSpeed * axis
 				Globals.isRunning = false
