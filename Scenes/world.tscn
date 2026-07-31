@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://be6uwv5gjxtbp"]
 
 [ext_resource type="PackedScene" uid="uid://m0tqhnn2n6xk" path="res://Scenes/rooms/room_0.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://c5ph8gfcrt0jl" path="res://Assets/Scripts/debug_label.gd" id="2_8j60k"]
 [ext_resource type="PackedScene" uid="uid://doo45yadqp2kf" path="res://Scenes/player.tscn" id="2_tlwt5"]
 [ext_resource type="Shader" uid="uid://c0bqmqh3e8j2u" path="res://Scenes/vignette.gdshader" id="3_5a7ea"]
 
@@ -36,6 +37,14 @@ color = Color(1, 1, 1, 0.08627451)
 energy = 16.0
 texture = SubResource("GradientTexture2D_fo5ed")
 texture_scale = 2.54
+
+[node name="Label" type="Label" parent="CharacterBody2D" unique_id=884654078]
+offset_left = -100.0
+offset_top = -152.0
+offset_right = -60.0
+offset_bottom = -23.0
+theme_override_font_sizes/font_size = 94
+script = ExtResource("2_8j60k")
 
 [node name="Background" type="ColorRect" parent="." unique_id=408394404]
 z_index = -3

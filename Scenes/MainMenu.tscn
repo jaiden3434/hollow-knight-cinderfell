@@ -492,7 +492,6 @@ selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
-visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1

@@ -14,7 +14,6 @@ extends Node
 # These can be configured at runtime to dictate behaviors.
 ## Sets whether player can jump
 @export var canJump: bool = true
-var hasCoyoteJumped : bool = false
 ## Sets whether player can dash
 @export var canDash: bool = true
 ## Sets whether player can move
@@ -40,3 +39,8 @@ var hasCoyoteJumped : bool = false
 ## How much attacking alone moves the player backwards, not to be confused with attack knockback.
 @export var attackRecoil: float = 15.0
 #------------------------------
+## Player internal checks
+var hasCoyoteJumped : bool = false
+var hasDashed : bool = false
+var isDashing : bool = false
+var isRunning : bool = false

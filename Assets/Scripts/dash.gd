@@ -8,27 +8,25 @@ extends State
 
 @onready var coyote_time: Timer = $"../../Coyote Time"
 @onready var camera_2d: Camera2D = $"../../Camera2D"
+@onready var air_dash_time: Timer = $"../../Air Dash time"
 
+
+func enter_state() -> void:
+	if !Globals.isRunning:
+		air_dash_time.start()
+		var axis = Input.get_axis("left", "right")
+		player.velocity.x = lerp(player.velocity.x, (Globals.dashSpeed + Globals.playerSpeed) * axis, 0.5)
 
 func update(_delta: float) -> void:
-
-	var axis = Input.get_axis("left", "right")
 	
-	if Globals.canMove:
-		if axis:
-			if Globals.dyanmicCamera == true:
-				# NOTE: Theres prolly a far better way to do ts, but as i said before, it makes the most sense to me. Meant to make the camera play nice if we are approaching a camera bound
-					Globals.playerDirection = axis
-			else:
-				Globals.playerDirection = 0
-			player.velocity.x = (Globals.playerSpeed + Globals.dashSpeed) * axis 
-		else:
-			player.velocity.x = 0.0
-			Globals.playerDirection = 0
-	
-	if Input.is_action_pressed("y_axis") and Globals.canJump and (player.is_on_floor() or !coyote_time.is_stopped()):
-		switch_state.emit(jump)
-		
-	
-	if Input.is_action_just_released("dash"):
+	if !air_dash_time.is_stopped() and !player.is_on_wall() and !player.is_on_floor():
+		Globals.isDashing = true	
+		var axis = Input.get_axis("left", "right")
+		player.velocity.y = 0.0
+	else:
+		Globals.isDashing = false
+		Globals.hasDashed = true
 		switch_state.emit(idle)
+		
+		
+		

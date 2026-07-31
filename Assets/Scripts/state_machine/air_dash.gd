@@ -10,10 +10,11 @@ extends State
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 
 
-func ready() -> void:
-	
-	player.velocity.x += Globals.dashSpeed * Globals.playerDirection 
-
-		
 func update(_delta: float) -> void:
-		switch_state.emit(idle)
+	var axis = Input.get_axis("left", "right")
+	player.velocity.x = Globals.dashSpeed * axis 
+	
+	if Input.is_action_pressed("y_axis") and Globals.canJump and (player.is_on_floor() or !coyote_time.is_stopped()):
+		switch_state.emit(jump)
+		
+	

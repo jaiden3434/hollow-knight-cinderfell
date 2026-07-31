@@ -141,29 +141,32 @@ dash = NodePath("../Dash")
 air_dash = NodePath("../Air Dash")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264 node_paths=PackedStringArray("player", "jump", "idle", "air_dash")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=287908264 node_paths=PackedStringArray("player", "jump", "idle", "dash")]
 script = ExtResource("5_3smsa")
 player = NodePath("../..")
 jump = NodePath(".")
 idle = NodePath("../Idle")
-air_dash = NodePath("../Air Dash")
+dash = NodePath("../Dash")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=164980813]
 script = ExtResource("6_x3wgy")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Dash" type="Node" parent="StateMachine" unique_id=777622867 node_paths=PackedStringArray("player", "jump", "idle")]
+[node name="Dash" type="Node" parent="StateMachine" unique_id=777622867 node_paths=PackedStringArray("player", "jump", "idle", "dash")]
 script = ExtResource("7_3smsa")
 player = NodePath("../..")
 jump = NodePath("../Jump")
 idle = NodePath("../Idle")
+dash = NodePath(".")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
-[node name="Air Dash" type="Node" parent="StateMachine" unique_id=1345669972 node_paths=PackedStringArray("player", "idle")]
+[node name="Air Dash" type="Node" parent="StateMachine" unique_id=1345669972 node_paths=PackedStringArray("player", "jump", "idle", "dash")]
 script = ExtResource("8_8erm5")
 player = NodePath("../..")
+jump = NodePath("../Jump")
 idle = NodePath("../Idle")
+dash = NodePath("../Dash")
 metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Coyote Time" type="Timer" parent="." unique_id=2006108679]
@@ -171,5 +174,11 @@ process_callback = 0
 wait_time = 0.4
 one_shot = true
 
+[node name="Air Dash time" type="Timer" parent="." unique_id=1391971500]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
 [connection signal="body_entered" from="attack hitbox" to="StateMachine/Attack" method="_on_attack_hitbox_body_entered"]
 [connection signal="body_entered" from="attack hitbox2" to="StateMachine/Attack" method="_on_attack_hitbox_2_body_entered"]
+[connection signal="timeout" from="Air Dash time" to="StateMachine/Dash" method="_on_air_dash_time_timeout"]
