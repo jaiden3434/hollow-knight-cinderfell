@@ -464,15 +464,13 @@ script = ExtResource("3_koqhg")
 selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
-[node name="Settings" type="Button" parent="MenuItems" unique_id=566689781 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Settings" type="Button" parent="MenuItems" unique_id=566689781]
 layout_mode = 2
 theme = ExtResource("2_xim88")
 text = "Settings
 "
 flat = true
 script = ExtResource("6_koqhg")
-selectHoverSFX = NodePath("../../SelectHover")
-selectClickSFX = NodePath("../../SelectClick")
 
 [node name="Credits" type="Button" parent="MenuItems" unique_id=1048210977]
 layout_mode = 2
@@ -492,18 +490,18 @@ selectHoverSFX = NodePath("../../SelectHover")
 selectClickSFX = NodePath("../../SelectClick")
 
 [node name="SettingsPopup" type="PanelContainer" parent="." unique_id=337038591]
+visible = false
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.365
 anchor_top = 0.35200003
-anchor_right = 0.633
-anchor_bottom = 0.952
-offset_left = -0.8000488
+anchor_right = 1.0
+anchor_bottom = 0.9480001
+offset_left = 700.0
 offset_top = 49.439972
-offset_right = -0.35998535
-offset_bottom = 44.274414
+offset_right = -705.0
+offset_bottom = 49.394775
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -511,7 +509,6 @@ layout_direction = 1
 mouse_filter = 2
 mouse_behavior_recursive = 2
 theme = ExtResource("2_xim88")
-metadata/_edit_use_anchors_ = true
 
 [node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
 layout_mode = 2
