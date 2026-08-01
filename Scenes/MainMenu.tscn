@@ -103,6 +103,98 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(700, 500)]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("VideoPopup:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ControlsPopup:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AudioPopup:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6byu3"]
+resource_name = "audio_fade"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_65hh5"]
+resource_name = "controls_fade"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ControlsPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_riqfo"]
 resource_name = "fade_in"
@@ -200,7 +292,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_pjscj"]
 resource_name = "settings_fade"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -238,12 +330,43 @@ tracks/2/keys = {
 "values": [Vector2(700, 500), Vector2(700, 450)]
 }
 
+[sub_resource type="Animation" id="Animation_m7n2d"]
+resource_name = "video_fade"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SettingsPopup:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VideoPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7v4os"]
 _data = {
 &"RESET": SubResource("Animation_2x1g0"),
+&"audio_fade": SubResource("Animation_6byu3"),
+&"controls_fade": SubResource("Animation_65hh5"),
 &"fade_in": SubResource("Animation_riqfo"),
 &"fade_out": SubResource("Animation_yxkem"),
-&"settings_fade": SubResource("Animation_pjscj")
+&"settings_fade": SubResource("Animation_pjscj"),
+&"video_fade": SubResource("Animation_m7n2d")
 }
 
 [sub_resource type="Environment" id="Environment_7467j"]
@@ -438,16 +561,15 @@ z_as_relative = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.45000002
-anchor_top = 0.59900004
+anchor_top = 0.549
 anchor_right = 0.551
-anchor_bottom = 0.99200004
+anchor_bottom = 0.9529375
 offset_left = -6.1035156e-05
 offset_top = 5.2799683
 offset_right = -0.92004395
 offset_bottom = 0.23999023
 grow_horizontal = 2
 grow_vertical = 0
-offset_transform_enabled = true
 offset_transform_position = Vector2(0, -50)
 mouse_filter = 2
 theme = ExtResource("2_xim88")
@@ -497,11 +619,11 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.35200003
 anchor_right = 1.0
-anchor_bottom = 0.9480001
+anchor_bottom = 0.952
 offset_left = 700.0
 offset_top = 49.439972
 offset_right = -705.0
-offset_bottom = 49.395386
+offset_bottom = 49.43994
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -509,6 +631,7 @@ layout_direction = 1
 mouse_filter = 2
 mouse_behavior_recursive = 2
 theme = ExtResource("2_xim88")
+metadata/_edit_use_anchors_ = true
 
 [node name="SettingsItems" type="FlowContainer" parent="SettingsPopup" unique_id=1095988631]
 layout_mode = 2
@@ -531,7 +654,7 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Video" type="Button" parent="SettingsPopup/SettingsItems" unique_id=629306826]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -542,10 +665,8 @@ text = "Video
 "
 flat = true
 script = ExtResource("9_fh7cp")
-selectHoverSFX = NodePath("../../../SelectHover")
-selectClickSFX = NodePath("../../../SelectClick")
 
-[node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Controls" type="Button" parent="SettingsPopup/SettingsItems" unique_id=1563039689]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -556,10 +677,8 @@ text = "Controls
 "
 flat = true
 script = ExtResource("10_8e205")
-selectHoverSFX = NodePath("../../../SelectHover")
-selectClickSFX = NodePath("../../../SelectClick")
 
-[node name="Audio" type="Button" parent="SettingsPopup/SettingsItems" unique_id=322345623 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
+[node name="Audio" type="Button" parent="SettingsPopup/SettingsItems" unique_id=322345623]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -569,8 +688,6 @@ theme = ExtResource("2_xim88")
 text = "   Audio   "
 flat = true
 script = ExtResource("10_riqfo")
-selectHoverSFX = NodePath("../../../SelectHover")
-selectClickSFX = NodePath("../../../SelectClick")
 
 [node name="Back" type="Button" parent="SettingsPopup/SettingsItems" unique_id=2046227102]
 layout_mode = 2
@@ -587,13 +704,19 @@ script = ExtResource("14_pjscj")
 
 [node name="VideoPopup" type="PanelContainer" parent="." unique_id=16329936]
 visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2703125
-anchor_top = 0.35703126
-anchor_right = 0.72987497
-anchor_bottom = 0.9230625
+anchor_top = 0.35200003
+anchor_right = 1.0
+anchor_bottom = 0.952
+offset_left = 700.0
+offset_top = -0.5600281
+offset_right = -705.0
+offset_bottom = -0.5600586
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(150, 125)
 offset_transform_scale = Vector2(1.06, 1.06)
 layout_direction = 1
@@ -643,13 +766,12 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.365
 anchor_top = 0.35200003
-anchor_right = 0.633
+anchor_right = 1.0
 anchor_bottom = 0.9480001
-offset_left = -0.8000488
+offset_left = 700.0
 offset_top = -0.5600281
-offset_right = -0.35998535
+offset_right = -705.0
 offset_bottom = -0.6072998
 grow_horizontal = 2
 grow_vertical = 2
@@ -739,14 +861,13 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.36500004
-anchor_top = 0.40200004
-anchor_right = 0.633
-anchor_bottom = 0.90203696
-offset_left = -0.8000488
+anchor_top = 0.35200003
+anchor_right = 1.0
+anchor_bottom = 0.952
+offset_left = 700.0
 offset_top = -0.5600281
-offset_right = -0.35998535
-offset_bottom = -0.6072998
+offset_right = -705.0
+offset_bottom = -0.5600586
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
