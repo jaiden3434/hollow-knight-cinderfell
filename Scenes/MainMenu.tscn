@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bakqe2q2p02vt" path="res://Assets/Scripts/settings_popup.gd" id="8_rrcx7"]
 [ext_resource type="Script" uid="uid://uvtch2ymaibm" path="res://Assets/Scripts/button logic/video_button.gd" id="9_fh7cp"]
 [ext_resource type="Script" uid="uid://br3simxltudag" path="res://Assets/Scripts/button logic/controls_button.gd" id="10_8e205"]
+[ext_resource type="Script" uid="uid://d1mtehtj0mk03" path="res://Scenes/credits_button.gd" id="10_65hh5"]
 [ext_resource type="Script" uid="uid://ccxti6vly0kq1" path="res://Assets/Scripts/audio.gd" id="10_riqfo"]
 [ext_resource type="Script" uid="uid://de0wo2106a57h" path="res://Assets/Scripts/version_counter.gd" id="13_8e205"]
 [ext_resource type="AudioStream" uid="uid://d2ig51liffhmt" path="res://Assets/SFX/MainMenuBGN.wav" id="13_fh7cp"]
@@ -20,6 +21,7 @@
 [ext_resource type="Script" uid="uid://1s3sgnxob16i" path="res://Assets/Scripts/state_machine/video_back.gd" id="16_m7n2d"]
 [ext_resource type="Script" uid="uid://dma2bs27704b3" path="res://Assets/Scripts/state_machine/controls_back.gd" id="18_65hh5"]
 [ext_resource type="Script" uid="uid://ctapwywmfewtb" path="res://Assets/Scripts/state_machine/audio_back.gd" id="19_6byu3"]
+[ext_resource type="Script" uid="uid://ccrcf3a2jxrlo" path="res://Scenes/credits_back.gd" id="20_m7n2d"]
 
 [sub_resource type="Animation" id="Animation_2x1g0"]
 length = 0.001
@@ -139,10 +141,70 @@ tracks/9/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CreditsPopup:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CreditsPopup:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(700, 500)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CreditsPopup/VBoxContainer/Intervania Group:visible_ratio")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CreditsPopup/VBoxContainer/HBoxContainer/Names:visible_ratio")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CreditsPopup/VBoxContainer/HBoxContainer/Specialization:visible_ratio")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_6byu3"]
 resource_name = "audio_fade"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,7 +232,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_65hh5"]
 resource_name = "controls_fade"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -194,6 +256,82 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_leunp"]
+resource_name = "credits_fade"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuItems:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CreditsPopup:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(20, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CreditsPopup:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.2667, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(700, 500), Vector2(700, 450)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CreditsPopup/VBoxContainer/Intervania Group:visible_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.27193812, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CreditsPopup/VBoxContainer/HBoxContainer/Names:visible_ratio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.27193812, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CreditsPopup/VBoxContainer/HBoxContainer/Specialization:visible_ratio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.27372718, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="Animation" id="Animation_riqfo"]
@@ -324,7 +462,7 @@ tracks/2/path = NodePath("SettingsPopup:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.26666668, 0.4),
+"times": PackedFloat32Array(0.2667, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(700, 500), Vector2(700, 450)]
@@ -332,7 +470,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_m7n2d"]
 resource_name = "video_fade"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -363,6 +501,7 @@ _data = {
 &"RESET": SubResource("Animation_2x1g0"),
 &"audio_fade": SubResource("Animation_6byu3"),
 &"controls_fade": SubResource("Animation_65hh5"),
+&"credits_fade": SubResource("Animation_leunp"),
 &"fade_in": SubResource("Animation_riqfo"),
 &"fade_out": SubResource("Animation_yxkem"),
 &"settings_fade": SubResource("Animation_pjscj"),
@@ -600,6 +739,7 @@ theme = ExtResource("2_xim88")
 text = "Credits
 "
 flat = true
+script = ExtResource("10_65hh5")
 
 [node name="Quit" type="Button" parent="MenuItems" unique_id=778726894 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
@@ -966,6 +1106,88 @@ text = "Back
 flat = true
 script = ExtResource("19_6byu3")
 
+[node name="CreditsPopup" type="PanelContainer" parent="." unique_id=543178610]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.35200003
+anchor_right = 1.0
+anchor_bottom = 0.952
+offset_left = 700.0
+offset_top = 49.439972
+offset_right = -705.0
+offset_bottom = 49.436768
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(150, 125)
+layout_direction = 1
+mouse_filter = 1
+mouse_behavior_recursive = 2
+theme = ExtResource("2_xim88")
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPopup" unique_id=328548875]
+layout_mode = 2
+
+[node name="Intervania Group" type="Label" parent="CreditsPopup/VBoxContainer" unique_id=864859155]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -20)
+offset_transform_scale = Vector2(0.8, 0.8)
+theme = ExtResource("2_xim88")
+text = "Intervania Group"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CreditsPopup/VBoxContainer" unique_id=330390493]
+layout_mode = 2
+
+[node name="Names" type="Label" parent="CreditsPopup/VBoxContainer/HBoxContainer" unique_id=2140682704]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_position_ratio = Vector2(0.585, 2.225)
+theme = ExtResource("2_xim88")
+theme_override_font_sizes/font_size = 25
+text = "Arrioras 
+NikolasKa 
+Dylscore "
+horizontal_alignment = 2
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Specialization" type="Label" parent="CreditsPopup/VBoxContainer/HBoxContainer" unique_id=984956346]
+self_modulate = Color(0.48805398, 0.48805404, 0.48805404, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+offset_transform_position_ratio = Vector2(0.585, 2.225)
+theme = ExtResource("2_xim88")
+theme_override_font_sizes/font_size = 25
+text = " Programmer
+ Programmer
+ Composer"
+vertical_alignment = 1
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="Back" type="Button" parent="CreditsPopup/VBoxContainer" unique_id=2134483711]
+layout_mode = 2
+size_flags_vertical = 10
+offset_transform_position_ratio = Vector2(0.585, 4.93)
+offset_transform_visual_only = false
+theme = ExtResource("2_xim88")
+text = "Back
+"
+flat = true
+script = ExtResource("20_m7n2d")
+
 [node name="Fog" type="ColorRect" parent="." unique_id=1856413664]
 z_index = -5
 material = SubResource("ShaderMaterial_riqfo")
@@ -1013,6 +1235,8 @@ script = ExtResource("15_7467j")
 [connection signal="mouse_entered" from="MenuItems/Settings" to="." method="_on_settings_mouse_entered"]
 [connection signal="mouse_entered" from="MenuItems/Settings" to="MenuItems/Settings" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Settings" to="MenuItems/Settings" method="_on_pressed"]
+[connection signal="mouse_entered" from="MenuItems/Credits" to="MenuItems/Credits" method="_on_mouse_entered"]
+[connection signal="pressed" from="MenuItems/Credits" to="MenuItems/Credits" method="_on_pressed"]
 [connection signal="mouse_entered" from="MenuItems/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="mouse_entered" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_mouse_entered"]
 [connection signal="pressed" from="MenuItems/Quit" to="MenuItems/Quit" method="_on_pressed"]
@@ -1030,3 +1254,5 @@ script = ExtResource("15_7467j")
 [connection signal="pressed" from="ControlsPopup/ScrollContainer/BoxContainer/Back" to="ControlsPopup/ScrollContainer/BoxContainer/Back" method="_on_pressed"]
 [connection signal="mouse_entered" from="AudioPopup/ScrollContainer/BoxContainer/Back" to="AudioPopup/ScrollContainer/BoxContainer/Back" method="_on_mouse_entered"]
 [connection signal="pressed" from="AudioPopup/ScrollContainer/BoxContainer/Back" to="AudioPopup/ScrollContainer/BoxContainer/Back" method="_on_pressed"]
+[connection signal="mouse_entered" from="CreditsPopup/VBoxContainer/Back" to="CreditsPopup/VBoxContainer/Back" method="_on_mouse_entered"]
+[connection signal="pressed" from="CreditsPopup/VBoxContainer/Back" to="CreditsPopup/VBoxContainer/Back" method="_on_pressed"]

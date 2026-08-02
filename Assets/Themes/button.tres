@@ -20,7 +20,7 @@ shadow_size = 30
 anti_aliasing_size = 6.59
 
 [resource]
-default_base_scale = 0.21
+default_font_size = 0
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.8666667, 0, 0, 1)
 Button/constants/align_to_largest_stylebox = 52
