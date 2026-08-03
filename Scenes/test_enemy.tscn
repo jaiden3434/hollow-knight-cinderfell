@@ -3,7 +3,7 @@
 [node name="test_enemy" type="Node2D" unique_id=505201484]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1041924360]
-offset_left = -3.0
-offset_top = -2.0
-offset_right = 37.0
-offset_bottom = 38.0
+offset_left = 234.0
+offset_top = 111.0
+offset_right = 274.0
+offset_bottom = 151.0

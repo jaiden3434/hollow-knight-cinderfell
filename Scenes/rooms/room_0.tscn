@@ -144,8 +144,7 @@ script = ExtResource("3_yntpj")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="TileMapLayer/RoomDoor" unique_id=1354546718]
 
 [node name="EnemySpawner" parent="." unique_id=210967894 instance=ExtResource("4_vupbb")]
-position = Vector2(308, 6)
-enemy_path = "uid://d0oqy2gh2fcw2"
+position = Vector2(1564, -400)
 
 [connection signal="screen_entered" from="TileMapLayer/RoomDoor/RoomDoor/VisibleOnScreenNotifier2D2" to="TileMapLayer/RoomDoor/RoomDoor" method="_on_visible_on_screen_notifier_2d_2_screen_entered"]
 [connection signal="screen_exited" from="TileMapLayer/RoomDoor/RoomDoor/VisibleOnScreenNotifier2D2" to="TileMapLayer/RoomDoor/RoomDoor" method="_on_visible_on_screen_notifier_2d_2_screen_exited"]
