@@ -171,7 +171,7 @@ metadata/_custom_type_script = "uid://6od8ykch3ya8"
 
 [node name="Coyote Time" type="Timer" parent="." unique_id=2006108679]
 process_callback = 0
-wait_time = 0.4
+wait_time = 0.2
 one_shot = true
 
 [node name="Air Dash time" type="Timer" parent="." unique_id=1391971500]

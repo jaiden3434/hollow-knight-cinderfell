@@ -1,6 +1,9 @@
 extends Node2D
 
-@export var Enemy : PackedScene
+@export_file("*.tscn") var enemy_path
 
 func _ready() -> void:
-	Enemy.instantiate()
+	var enemy = load(enemy_path).instantiate()
+	enemy.position = position
+	add_child(enemy)
+	

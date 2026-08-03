@@ -1,12 +1,11 @@
 [gd_scene format=3 uid="uid://cvqnoobx2bo1o"]
 
 [ext_resource type="Script" uid="uid://cpg5nl3yeeolk" path="res://Assets/Scripts/enemy_spawner.gd" id="1_4b1db"]
-[ext_resource type="PackedScene" uid="uid://d0oqy2gh2fcw2" path="res://Scenes/box.tscn" id="2_4l853"]
 
 [node name="EnemySpawner" type="Node2D" unique_id=210967894]
 script = ExtResource("1_4b1db")
-Enemy = ExtResource("2_4l853")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=251798753]
+visible = false
 offset_right = 113.0
 offset_bottom = 113.0
