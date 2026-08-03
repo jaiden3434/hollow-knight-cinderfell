@@ -1,5 +1,4 @@
 @icon("uid://cy6jdmqfkf064")
-class_name Enemy extends Node
 
 signal spawn_enemy(enemy: Enemy)
 
