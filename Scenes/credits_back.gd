@@ -1,20 +1,18 @@
 extends Button
 
 
-@onready var selectHoverSFX: AudioStreamPlayer = $"../../../SelectHover"
-@onready var selectClickSFX: AudioStreamPlayer = $"../../../SelectClick"
-@onready var MenuItems: FlowContainer = $"../../../MenuItems"
-@onready var Fade: AnimationPlayer = $"../../../Fade"
-@onready var CreditsPopup: Control = $"../.."
+@onready var select_hover: AudioStreamPlayer = $"../../SelectHover"
+@onready var select_click: AudioStreamPlayer = $"../../SelectClick"
+@onready var fade: AnimationPlayer = $"../../Fade"
+@onready var menu_items: FlowContainer = $"../../MenuItems"
+@onready var credits_popup: PanelContainer = $".."
+
 
 
 func _on_mouse_entered() -> void:
-	selectHoverSFX.play()
-	selectHoverSFX.pitch_scale = randf_range(0.8, 1.0)
+	select_hover.play()
+	select_click.pitch_scale = randf_range(0.8, 1.0)
+
 
 func _on_pressed() -> void:
-	selectClickSFX.play()
-	MenuItems.show()
-	Fade.play_backwards("credits_fade")
-	await Fade.animation_finished
-	CreditsPopup.hide()
+	select_click.play()

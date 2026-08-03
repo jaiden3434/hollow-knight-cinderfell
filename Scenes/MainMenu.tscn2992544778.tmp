@@ -24,7 +24,7 @@
 [ext_resource type="Script" uid="uid://ccrcf3a2jxrlo" path="res://Scenes/credits_back.gd" id="20_m7n2d"]
 
 [sub_resource type="Animation" id="Animation_2x1g0"]
-length = 1.7666667
+length = 0.001
 tracks/0/type = "bezier"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -33,7 +33,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0.96862745, -0.25, 0, 1.8, 101.03137),
+"points": PackedFloat32Array(0.96862745, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
 }
 tracks/1/type = "bezier"
@@ -165,71 +165,101 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector2(700, 500)]
 }
-tracks/12/type = "bezier"
+tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:visible_ratio")
+tracks/12/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Programmer:visible_ratio")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
-tracks/13/type = "bezier"
+tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:visible_ratio")
+tracks/13/path = NodePath("CreditsPopup/Intervania Group:max_lines_visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
-tracks/14/type = "bezier"
+tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:visible_ratio")
+tracks/14/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:max_lines_visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
-tracks/15/type = "bezier"
+tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:visible_ratio")
+tracks/15/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:max_lines_visible")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
-tracks/16/type = "bezier"
+tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:visible_ratio")
+tracks/16/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:max_lines_visible")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
-tracks/17/type = "bezier"
+tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:visible_ratio")
+tracks/17/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:max_lines_visible")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:max_lines_visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:max_lines_visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
 }
 
 [sub_resource type="Animation" id="Animation_6byu3"]
@@ -290,7 +320,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_leunp"]
 resource_name = "credits_fade"
-length = 3.0
+length = 1.0333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -330,236 +360,98 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:visible_characters")
+tracks/3/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Programmer:visible_ratio")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0.27372718, 0.7),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 528]
+"update": 0,
+"values": [0.0, 1.0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:visible_characters")
+tracks/4/path = NodePath("CreditsPopup/Intervania Group:max_lines_visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 528]
+"values": [-1, 999]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:visible_characters")
+tracks/5/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:max_lines_visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 528]
+"values": [-1, 999]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:visible_characters")
+tracks/6/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:max_lines_visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 528]
+"values": [-1, 999]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:visible_characters")
+tracks/7/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:max_lines_visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 528]
+"values": [-1, 999]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:visible_characters")
+tracks/8/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:max_lines_visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 3),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 528]
+"values": [-1, 999]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("CreditsPopup/Intervania Group:max_lines_visible")
+tracks/9/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:max_lines_visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0]
+"values": [-1, 999]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:max_lines_visible")
+tracks/10/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:max_lines_visible")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
-}
-tracks/11/type = "value"
-tracks/11/imported = false
-tracks/11/enabled = true
-tracks/11/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:max_lines_visible")
-tracks/11/interp = 1
-tracks/11/loop_wrap = true
-tracks/11/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:max_lines_visible")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:max_lines_visible")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:max_lines_visible")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:max_lines_visible")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-tracks/16/type = "value"
-tracks/16/imported = false
-tracks/16/enabled = true
-tracks/16/path = NodePath("CreditsPopup/Intervania Group:visible_characters")
-tracks/16/interp = 1
-tracks/16/loop_wrap = true
-tracks/16/keys = {
-"times": PackedFloat32Array(3),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [528]
-}
-tracks/17/type = "bezier"
-tracks/17/imported = false
-tracks/17/enabled = true
-tracks/17/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Arioras:visible_ratio")
-tracks/17/interp = 1
-tracks/17/loop_wrap = true
-tracks/17/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
-}
-tracks/18/type = "bezier"
-tracks/18/imported = false
-tracks/18/enabled = true
-tracks/18/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/NikolasKa:visible_ratio")
-tracks/18/interp = 1
-tracks/18/loop_wrap = true
-tracks/18/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
-}
-tracks/19/type = "bezier"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer2/Dylscore:visible_ratio")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
-}
-tracks/20/type = "bezier"
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer:visible_ratio")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
-}
-tracks/21/type = "bezier"
-tracks/21/imported = false
-tracks/21/enabled = true
-tracks/21/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Programmer2:visible_ratio")
-tracks/21/interp = 1
-tracks/21/loop_wrap = true
-tracks/21/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
-}
-tracks/22/type = "bezier"
-tracks/22/imported = false
-tracks/22/enabled = true
-tracks/22/path = NodePath("CreditsPopup/VBoxContainer/VBoxContainer3/Composer:visible_ratio")
-tracks/22/interp = 1
-tracks/22/loop_wrap = true
-tracks/22/keys = {
-"handle_modes": PackedInt32Array(0, 2),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.17333333, -0.16666667, 0, 0),
-"times": PackedFloat32Array(0, 1.04)
+"values": [-1, 999]
 }
 
 [sub_resource type="Animation" id="Animation_riqfo"]
@@ -942,6 +834,7 @@ mouse_filter = 2
 theme = ExtResource("2_xim88")
 alignment = 1
 last_wrap_alignment = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="Start" type="Button" parent="MenuItems" unique_id=1432760030 node_paths=PackedStringArray("selectHoverSFX", "selectClickSFX")]
 layout_mode = 2
@@ -1333,7 +1226,6 @@ flat = true
 script = ExtResource("19_6byu3")
 
 [node name="CreditsPopup" type="PanelContainer" parent="." unique_id=543178610]
-visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
@@ -1343,7 +1235,7 @@ anchor_bottom = 0.952
 offset_left = 700.0
 offset_top = 49.439972
 offset_right = -705.0
-offset_bottom = 49.436035
+offset_bottom = 49.436157
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 125)
@@ -1368,9 +1260,8 @@ text = "Intervania Group"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-max_lines_visible = 0
-visible_characters = 528
-visible_ratio = 33.0
+visible_characters = 0
+visible_ratio = 0.0
 
 [node name="VBoxContainer" type="HBoxContainer" parent="CreditsPopup" unique_id=1275309240]
 layout_mode = 2
@@ -1391,9 +1282,8 @@ offset_transform_position_ratio = Vector2(0.585, 2.225)
 theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = "Arioras"
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
+visible_characters = 33
+visible_ratio = 1.137931
 
 [node name="NikolasKa" type="Label" parent="CreditsPopup/VBoxContainer/VBoxContainer2" unique_id=1487391227]
 layout_mode = 2
@@ -1404,9 +1294,8 @@ theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = "NikolasKa"
 vertical_alignment = 1
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
+visible_characters = 33
+visible_ratio = 1.137931
 
 [node name="Dylscore" type="Label" parent="CreditsPopup/VBoxContainer/VBoxContainer2" unique_id=59209323]
 layout_mode = 2
@@ -1417,9 +1306,8 @@ theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = "Dylscore "
 vertical_alignment = 1
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
+visible_characters = 33
+visible_ratio = 1.137931
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="CreditsPopup/VBoxContainer" unique_id=828612445]
 layout_mode = 2
@@ -1435,9 +1323,6 @@ theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = " Programmer"
 vertical_alignment = 1
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="Programmer2" type="Label" parent="CreditsPopup/VBoxContainer/VBoxContainer3" unique_id=1009024999]
 self_modulate = Color(0.48805398, 0.48805404, 0.48805404, 1)
@@ -1448,9 +1333,6 @@ theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = " Programmer"
 vertical_alignment = 1
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="Composer" type="Label" parent="CreditsPopup/VBoxContainer/VBoxContainer3" unique_id=253234776]
 self_modulate = Color(0.48805398, 0.48805404, 0.48805404, 1)
@@ -1461,9 +1343,6 @@ theme = ExtResource("2_xim88")
 theme_override_font_sizes/font_size = 25
 text = " Composer"
 vertical_alignment = 1
-max_lines_visible = 1
-visible_characters = 0
-visible_ratio = 0.0
 
 [node name="Back" type="Button" parent="CreditsPopup" unique_id=2134483711]
 layout_mode = 2
