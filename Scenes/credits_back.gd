@@ -3,9 +3,9 @@ extends Button
 
 @onready var selectHoverSFX: AudioStreamPlayer = $"../../../SelectHover"
 @onready var selectClickSFX: AudioStreamPlayer = $"../../../SelectClick"
-@onready var AudioPopup: PanelContainer = $"../../../AudioPopup"
+@onready var MenuItems: FlowContainer = $"../../../MenuItems"
 @onready var Fade: AnimationPlayer = $"../../../Fade"
-@onready var SettingsPopup: Control = $"../.."
+@onready var CreditsPopup: Control = $"../.."
 
 
 func _on_mouse_entered() -> void:
@@ -14,7 +14,7 @@ func _on_mouse_entered() -> void:
 
 func _on_pressed() -> void:
 	selectClickSFX.play()
-	AudioPopup.show()
-	Fade.play("audio_fade")
+	MenuItems.show()
+	Fade.play_backwards("credits_fade")
 	await Fade.animation_finished
-	SettingsPopup.hide()
+	CreditsPopup.hide()
