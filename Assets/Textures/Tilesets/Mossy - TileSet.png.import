@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdu58g73v7urg"
-path="res://.godot/imported/titlecard-6.png-501d10d5b4744c6a5d4a2e60721d0367.ctex"
+uid="uid://bo26ejd11lm8f"
+path="res://.godot/imported/Mossy - TileSet.png-13fab6b7274f6e88dc90bf77bbde817c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/titlecard-6.png"
-dest_files=["res://.godot/imported/titlecard-6.png-501d10d5b4744c6a5d4a2e60721d0367.ctex"]
+source_file="res://Assets/Textures/Tilesets/Mossy - TileSet.png"
+dest_files=["res://.godot/imported/Mossy - TileSet.png-13fab6b7274f6e88dc90bf77bbde817c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8ryii06vc3d"
-path="res://.godot/imported/titlecard-7.png-eaa449f6bf1aa6f3f290c53daba470ec.ctex"
+uid="uid://dtjk8mdxgj8ee"
+path="res://.godot/imported/tile7.png-3cc0f146858f0ec3b927be8296eca508.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/titlecard-7.png"
-dest_files=["res://.godot/imported/titlecard-7.png-eaa449f6bf1aa6f3f290c53daba470ec.ctex"]
+source_file="res://Assets/Textures/Tilesets/tile7.png"
+dest_files=["res://.godot/imported/tile7.png-3cc0f146858f0ec3b927be8296eca508.ctex"]
 
 [params]
 

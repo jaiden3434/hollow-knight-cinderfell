@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bkpcxxmxp1lnw" path="res://Assets/Scripts/state_machine/jump.gd" id="5_3smsa"]
 [ext_resource type="Script" uid="uid://d3ngfe0k5k7au" path="res://Assets/Scripts/state_machine/idle.gd" id="6_3smsa"]
 [ext_resource type="Script" uid="uid://ccmd00wx3rafe" path="res://Assets/Scripts/attack.gd" id="6_x3wgy"]
-[ext_resource type="Script" uid="uid://do1tylimx3vk3" path="res://Assets/Scripts/dash.gd" id="7_3smsa"]
+[ext_resource type="Script" uid="uid://do1tylimx3vk3" path="res://Assets/Scripts/state_machine/dash.gd" id="7_3smsa"]
 [ext_resource type="Script" uid="uid://dd8qxvcki58tc" path="res://Assets/Scripts/state_machine/air_dash.gd" id="8_8erm5"]
 
 [sub_resource type="GDScript" id="GDScript_fkybt"]

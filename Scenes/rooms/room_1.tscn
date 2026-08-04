@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bih3apb0j7qmw"]
 
-[ext_resource type="Texture2D" uid="uid://bqxvnxkp12l3p" path="res://Assets/Textures/hhhh.PNG" id="1_21tkn"]
+[ext_resource type="Texture2D" uid="uid://bqxvnxkp12l3p" path="res://Assets/Textures/Tilesets/hhhh.PNG" id="1_21tkn"]
 [ext_resource type="PackedScene" uid="uid://cyq2o104ctqol" path="res://Scenes/room_door_vertical.tscn" id="2_nsq00"]
 [ext_resource type="Script" uid="uid://bkv1h5bqinwmw" path="res://Scenes/room_door_vertical.gd" id="3_a0jlh"]
 

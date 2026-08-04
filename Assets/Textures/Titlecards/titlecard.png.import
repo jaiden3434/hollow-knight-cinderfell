@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy6jdmqfkf064"
-path="res://.godot/imported/skull.svg-ece8ee8cc190d6cbbe82d1b1fa150d5b.ctex"
+uid="uid://bwdt8xrrcbr6j"
+path="res://.godot/imported/titlecard.png-828e5c95724996941d7a2288d55ce8f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/skull.svg"
-dest_files=["res://.godot/imported/skull.svg-ece8ee8cc190d6cbbe82d1b1fa150d5b.ctex"]
+source_file="res://Assets/Textures/Titlecards/titlecard.png"
+dest_files=["res://.godot/imported/titlecard.png-828e5c95724996941d7a2288d55ce8f0.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
