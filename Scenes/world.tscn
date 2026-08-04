@@ -39,7 +39,6 @@ texture = SubResource("GradientTexture2D_fo5ed")
 texture_scale = 2.54
 
 [node name="Debug Text" type="Label" parent="CharacterBody2D" unique_id=884654078]
-visible = false
 offset_left = -99.0
 offset_top = -152.0
 offset_right = -59.0

@@ -38,9 +38,17 @@ extends Node
 @export var playerDirection: int = 1
 ## How much attacking alone moves the player backwards, not to be confused with attack knockback.
 @export var attackRecoil: float = 15.0
+## Current player health
+@export var playerHealth: float = 5.0
+## Max player health
+@export var maxPlayerHealth: float = 5.0
 #------------------------------
 ## Player internal checks
 var hasCoyoteJumped : bool = false
 var hasDashed : bool = false
 var isDashing : bool = false
 var isRunning : bool = false
+
+func _process(delta: float) -> void:
+	## NOTE: THIS IS NOT FOR STANDARD LOGIC. USE ONLY FOR CLAMPING CERTAIN VALUES.
+	playerHealth = clampf(playerHealth, 0.0, maxPlayerHealth)

@@ -1,6 +1,7 @@
 extends Node2D
 
-@export var Enemy : PackedScene
+@export var Enemy_path : String
 
 func _ready() -> void:
-	Enemy.instantiate()
+	var Enemy = load(Enemy_path).instantiate()
+	add_child(Enemy)

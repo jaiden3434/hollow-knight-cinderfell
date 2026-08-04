@@ -1,9 +1,97 @@
 [gd_scene format=3 uid="uid://dm6fnqcven31u"]
 
+[ext_resource type="Script" uid="uid://r3w8hthsa0s7" path="res://Assets/Scripts/state_machine/state_machine.gd" id="1_bs22l"]
+[ext_resource type="Script" uid="uid://6od8ykch3ya8" path="res://Assets/Scripts/state_machine/state.gd" id="2_5b80j"]
+
+[sub_resource type="GDScript" id="GDScript_82ftl"]
+script/source = "extends CharacterBody2D
+
+@onready var attack_delay: Timer = $AttackDelay
+@onready var area_2d: Area2D = $Area2D
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	handle_attack()
+	move_and_slide()
+
+
+func handle_attack():
+	
+	# Check if a characterbody2d is intersecting infront of the raycast
+	if $AttackHitbox.is_colliding() and attack_delay.is_stopped():
+		var body1 = $AttackHitbox.get_collider()
+		if body1 is CharacterBody2D:
+			if body1.has_method(\"take_damage\"):
+				body1.take_damage(1.0)
+				$AttackDelay.start()
+				
+	# Check if a characterbody2d is touching the area2d
+		for body in area_2d.get_overlapping_bodies():
+			if body is CharacterBody2D:
+				if body.has_method(\"take_damage\"):
+					body.take_damage(1.0)
+					$AttackDelay.start()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82ftl"]
+size = Vector2(272, 155)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8156"]
+size = Vector2(324, 196.625)
+
+[sub_resource type="GDScript" id="GDScript_v8156"]
+script/source = "extends State
+
+
+func update(_delta: float) -> void:
+	pass
+"
+
 [node name="test_enemy" type="Node2D" unique_id=505201484]
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1041924360]
-offset_left = 234.0
-offset_top = 111.0
-offset_right = 274.0
-offset_bottom = 151.0
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=2096192114]
+script = SubResource("GDScript_82ftl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=381057491]
+position = Vector2(133, -37.5)
+shape = SubResource("RectangleShape2D_82ftl")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D" unique_id=1041924360]
+offset_top = -115.0
+offset_right = 268.0
+offset_bottom = 40.0
+color = Color(0.39607844, 1, 1, 1)
+
+[node name="AttackHitbox" type="RayCast2D" parent="CharacterBody2D" unique_id=137221255]
+target_position = Vector2(-567, -1)
+hit_from_inside = true
+
+[node name="Area2D" type="Area2D" parent="CharacterBody2D" unique_id=29702526]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Area2D" unique_id=351368521]
+position = Vector2(134, -37.3125)
+shape = SubResource("RectangleShape2D_v8156")
+
+[node name="AttackDelay" type="Timer" parent="CharacterBody2D" unique_id=785096800]
+one_shot = true
+
+[node name="StateMachine" type="Node" parent="CharacterBody2D" unique_id=958618585 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_bs22l")
+initial_state = NodePath("Wander")
+metadata/_custom_type_script = "uid://r3w8hthsa0s7"
+
+[node name="Wander" type="Node" parent="CharacterBody2D/StateMachine" unique_id=686670386]
+script = ExtResource("2_5b80j")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Follow" type="Node" parent="CharacterBody2D/StateMachine" unique_id=1548782931]
+script = ExtResource("2_5b80j")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
+
+[node name="Attack" type="Node" parent="CharacterBody2D/StateMachine" unique_id=829771489]
+script = SubResource("GDScript_v8156")
+metadata/_custom_type_script = "uid://6od8ykch3ya8"
